@@ -1,5 +1,4 @@
 # Odd Jobs Web App
----
 
 ## Project Overview
 
