@@ -2,7 +2,7 @@
 
 ## User Registers for an Account
 
-<img src="/docs/use-case-diagrams/customer-creates-work-request.jpg">
+<img src="/docs/use-case-diagrams/user-creates-account.jpg">
 
 <strong>Participating actors:</strong> User  
 <strong>Entry Conditions:</strong>
