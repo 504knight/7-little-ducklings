@@ -8,9 +8,11 @@
 <strong>Special Requirements:</strong>  
 
 
-## Use Case Title
+## Customer Creates a Work Order/Request
 
-<strong>Participating actors:</strong>  
+<img src="/use-case-diagrams/customer-creates-work-request.jpg">
+
+<strong>Participating actors:</strong> Customer  
 <strong>Entry Conditions:</strong>  
 <strong>Exit Conditions:</strong>  
 <strong>Special Requirements:</strong>  
