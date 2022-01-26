@@ -1,11 +1,33 @@
 # Use Case Diagrams
 
-## Customer Registers for an Account
+## User Registers for an Account
 
-<strong>Participating actors:</strong>  
-<strong>Entry Conditions:</strong>  
-<strong>Exit Conditions:</strong>  
-<strong>Special Requirements:</strong>  
+<img src="/docs/use-case-diagrams/customer-creates-work-request.jpg">
+
+<strong>Participating actors:</strong> User  
+<strong>Entry Conditions:</strong>
+<ul>
+    <li>User wishes to create an account.</li>
+</ul>  
+<strong>Exit Conditions:</strong>
+<ul>
+    <li>Account is created</li>
+    <li>User no longer wishes to create an account</li>
+</ul>
+<strong>Event Flow:</strong>
+<ol>
+    <li>User requests to create an account (navigates to account creation page).</li>
+    <li>User enters account information into the input fields on account creation page.
+    </li>
+    <li>User submits information for account creation.</li>
+    <li>
+        System validates user input.<br>
+        <ul>
+            <li>If the input is valid, then an account is created and a confirmation is displayed to the user.</li>
+            <li>If the input is invalid, then the system notifies the user that their input is invalid.</li>
+        </ul>
+    </li>
+</ol>   
 
 
 ## Customer Creates a Work Order/Request
@@ -17,7 +39,10 @@
 <ul>
     <li>User is logged-in</li>
 </ul> 
-<strong>Exit Conditions:</strong>  
+<strong>Exit Conditions:</strong> 
+<ul>
+    <li>The user decides not to fill out a work request</li>
+</ul> 
 
 <strong>Event Flow:</strong>  
 <ol>
@@ -29,7 +54,7 @@
         The user's inputs are validated.<br>
         <ul>
         <li>If the user's inputs are valid, then the work order is submitted.</li>
-        <li>If the user's inputs are invalid, then the system alerts the user that their inputs are invalid.</li>
+        <li>If the user's inputs are invalid, then the system notifies the user that their inputs are invalid.</li>
         </ul>
     </li>
 </ol>
