@@ -10,7 +10,7 @@
 
 ## Customer Creates a Work Order/Request
 
-<img src="/use-case-diagrams/customer-creates-work-request.jpg">
+<img src="/docs/use-case-diagrams/customer-creates-work-request.jpg">
 
 <strong>Participating actors:</strong> Customer  
 <strong>Entry Conditions:</strong>  
