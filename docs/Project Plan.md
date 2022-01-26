@@ -34,7 +34,32 @@ GitHub - Formal repository used for submissions, version control, data tracking,
 
 ## Risk Analysis
 
-TODO: Update Risk Analysis
+- Database Structure
+	- Likelihood - Low
+	- Severity - Very High
+	- Consequences - Ineffective models for data lead to complicated code that may result in poor workarounds. Accessing balances, tranactions, account info, reviews, etc. would end up confusing.
+	- Work-Around - None. The system will not function properly without correct database implementation. It is necessary to store information about the customers, workers, jobs, etc.
+- Login
+	- Likelihood - Low
+	- Severity - Medium
+	- Consequences - Poor customer experience getting into the application or signing up for the first time.
+	- Work-Around - None. This is a necessary part of the application due to security and account types.
+- Funds Exchange
+	- Likelihood - Low
+	- Severity - High
+	- Consequences - Incorrect amounts being transferred due to unclear or improperly implemented code.
+	- Work-Around - None.
+- User Interface
+	- Likelihood - Low
+	- Severity - Very High
+	- Consequences - Frustrating experience interacting with the application and performing desired actions. Could become too complex and hard to find all the options frequently used.
+- Hosting
+	- Likelihood - Low
+	- Severity - Medium
+	- Consequences - System will not be able to be access information from the database or be accessed by the user.
+	- Work-Around - Host system through a hosting service.
 
-TEST THIS OUT
+## Configuration Management
+
+See the README.md in the Git repository.
 
