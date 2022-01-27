@@ -111,7 +111,7 @@
 
 <img src="/docs/use-case-diagrams/user-review.jpg">
 
-<strong>Participating actors:</strong>  Customer
+<strong>Participating actors:</strong> Customer  
 <strong>Entry Conditions:</strong>  
 <ul>
     <li>Customer wishes to leave review</li>
@@ -208,7 +208,7 @@
     <li>Worker navigates to work schedule page.</li>
     <li>Worker selects a job.</li>
     <li>System displays option to edit job status.</li>
-    <li>Worker changes job status to completed and submits change.</li>
+    <li>Worker changes job status to complete and submits change.</li>
     <li>
         <ul>
             <li>System updates status of Job Listing in database.</li>
@@ -218,12 +218,28 @@
     </li>
 </ol>
 
-## Use Case Title
+## User Edits/Deletes Account
 
-<strong>Participating actors:</strong>  
+<img src="/docs/use-case-diagrams/edit-account.jpg">
+
+<strong>Participating actors:</strong> User  
 <strong>Entry Conditions:</strong>  
+<ul>
+    <li>User wishes to edit their account details</li>
+    <li>User is logged in</li>
+</ul>
 <strong>Exit Conditions:</strong>  
-<strong>Event Flow:</strong> 
+<ul>
+    <li>User edits their account details.</li>
+    <li>User decides not to edit their account</li>
+</ul>
+<strong>Event Flow:</strong>  
+<ol>
+    <li>User navigates to Account Details/Settings page.</li>
+    <li>User edits one or more aspects of their account.</li>
+    <li>User submits changes</li>
+    <li>The system updates these changes in the database</li>
+</ol>
 
 ## Use Case Title
 
