@@ -269,7 +269,7 @@
             </li>
             <li>Owner requests to remove worker.
                 <ul>
-                    <li>Database is Updated.</li>
+                    <li>Database is updated.</li>
                     <li>Worker is notified that they have been removed.</li>
                 </ul>
             </li>
