@@ -59,12 +59,29 @@
     </li>
 </ol>
 
-## Use Case Title
+## User Login
 
-<strong>Participating actors:</strong>  
+<strong>Participating actors:</strong> User  
 <strong>Entry Conditions:</strong>  
-<strong>Exit Conditions:</strong>  
-<strong>Special Requirements:</strong>  
+<ul>
+    <li>User wishes to login</li>
+</ul>
+<strong>Exit Conditions:</strong>
+<ul>
+    <li>User decides not to login</li>
+</ul>  
+<strong>Event Flow:</strong>  
+<ol>
+    <li>User navigates to login page.</li>
+    <li>User enters username and password and submits form.</li>
+    <li>System checks to see if the username and password are valid.
+        <ul>
+            <li>If the username and password are valid, the user session is initiated and the user is redirected to the appropriate home page corresponding to their user type (customer, worker, owner).</li>
+            <li>If the username and password are invalid, the user is notified.</li>
+        </ul>
+    </li>
+    
+</ol>
 
 ## Use Case Title
 
