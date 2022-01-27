@@ -85,12 +85,27 @@
     
 </ol>
 
-## Use Case Title
+## Worker Selects and Accepts a Job
 
-<strong>Participating actors:</strong>  
+<img src="/docs/use-case-diagrams/accept-job.jpg">
+
+<strong>Participating actors:</strong> Worker  
 <strong>Entry Conditions:</strong>  
+<ul>
+    <li>Worker wants to find a job.</li>
+    <li>Worker is logged in.</li>
+</ul>
 <strong>Exit Conditions:</strong>  
-<strong>Special Requirements:</strong>  
+<ul>
+    <li>Worker stops searching for a job.</li>
+</ul>
+<strong>Event Flow:</strong>  
+<ol>
+    <li>Worker navigates to the job listings page.</li>
+    <li>The system displays all of the available job listings to the worker.</li>
+    <li>The worker chooses and accepts a job from the list.</li>
+    <li>The system displays a confirmation message to the worker.</li>
+</ol>
 
 ## Use Case Title
 
