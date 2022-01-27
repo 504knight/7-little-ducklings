@@ -132,12 +132,33 @@
     <li>Submission confirmation is displayed to customer</li>
 </ol>  
 
-## Use Case Title
+## Worker Cancels Job
 
-<strong>Participating actors:</strong>  
+<img src="/docs/use-case-diagrams/worker-cancel-job.jpg">
+
+<strong>Participating actors:</strong> Worker  
 <strong>Entry Conditions:</strong>  
+<ul>
+    <li>Worker wishes to cancel job</li>
+    <li>Worker is logged in</li>
+</ul>
 <strong>Exit Conditions:</strong>  
-<strong>Special Requirements:</strong>  
+<ul>
+    <li>Worker decides not to cancel job</li>
+    <li>Worker cancels job</li>
+</ul>
+<strong>Event Flow:</strong>
+<ol>
+    <li>Worker navigates to Work Schedule page.</li>
+    <li>Worker selects a job and requests to cancel it.</li>
+    <li>
+        <ul>
+            <li>System displays message confirming job cancelation.</li>
+            <li>System changes record in database.
+            <li>System notifies customer that job has been canceled and reopened to other workers.</li>
+        </ul>
+    </li>
+</ol>  
 
 ## Use Case Title
 
