@@ -237,13 +237,43 @@
 <ol>
     <li>User navigates to Account Details/Settings page.</li>
     <li>User edits one or more aspects of their account.</li>
-    <li>User submits changes</li>
+    <li>User submits changes.</li>
     <li>The system updates these changes in the database</li>
 </ol>
 
-## Use Case Title
+## Owner Reviews Workers
 
-<strong>Participating actors:</strong>  
+<img src="/docs/use-case-diagrams/owner-review.jpg">
+
+<strong>Participating actors:</strong> Owner  
 <strong>Entry Conditions:</strong>  
+<ul>
+    <li>Owner wishes to review workers</li>
+    <li>Owner is logged in</li>
+</ul>
 <strong>Exit Conditions:</strong>  
-<strong>Event Flow:</strong> 
+<ul>
+    <li>Owner is finished reviewing workers</li>
+</ul>
+<strong>Event Flow:</strong>  
+<ol>
+    <li>Owner navigates to worker review page.</li>
+    <li>System populates list of workers</li>
+    <li>Owner selects employee from list of workers
+        <ul>
+            <li>Owner requests to view reviews of jobs performed by selected worker.
+                <ul>
+                    <li>Query database for reviews.</li>
+                    <li>Display reviews.</li>
+                </ul>
+            </li>
+            <li>Owner requests to remove worker.
+                <ul>
+                    <li>Database is Updated.</li>
+                    <li>Worker is notified that they have been removed.</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+
+</ol>
