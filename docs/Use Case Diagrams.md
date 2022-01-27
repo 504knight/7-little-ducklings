@@ -107,12 +107,30 @@
     <li>The system displays a confirmation message to the worker.</li>
 </ol>
 
-## Use Case Title
+## Customer Leaves Review of Job
 
-<strong>Participating actors:</strong>  
+<img src="/docs/use-case-diagrams/user-review.jpg">
+
+<strong>Participating actors:</strong>  Customer
 <strong>Entry Conditions:</strong>  
-<strong>Exit Conditions:</strong>  
-<strong>Special Requirements:</strong>  
+<ul>
+    <li>Customer wishes to leave review</li>
+    <li>Customer is logged in</li>
+</ul>
+<strong>Exit Conditions:</strong>
+<ul>
+    <li>Customer leaves a review</li>
+    <li>Customer no longer wishes to leave a review</li>
+</ul>
+<strong>Event Flow:</strong>
+<ol>
+    <li>Customer navigates to Job History page.</li>
+    <li>Customer selects a past job and opts to leave a review.</li>
+    <li>System displays inputs for customer to leave review.</li>
+    <li>Customer submits review</li>
+    <li>Review is recorded in the database</li>
+    <li>Submission confirmation is displayed to customer</li>
+</ol>  
 
 ## Use Case Title
 
