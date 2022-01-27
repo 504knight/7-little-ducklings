@@ -1,5 +1,7 @@
 # Use Case Diagrams
 
+
+
 ## User Registers for an Account
 
 <img src="/docs/use-case-diagrams/user-creates-account.jpg">
@@ -28,6 +30,7 @@
         </ul>
     </li>
 </ol>   
+
 
 
 ## Customer Creates a Work Order/Request
@@ -59,6 +62,8 @@
     </li>
 </ol>
 
+
+
 ## User Login
 
 <img src="/docs/use-case-diagrams/user-login.jpg">
@@ -85,6 +90,8 @@
     
 </ol>
 
+
+
 ## Worker Selects and Accepts a Job
 
 <img src="/docs/use-case-diagrams/accept-job.jpg">
@@ -106,6 +113,8 @@
     <li>The worker chooses and accepts a job from the list.</li>
     <li>The system displays a confirmation message to the worker.</li>
 </ol>
+
+
 
 ## Customer Leaves Review of Job
 
@@ -131,6 +140,8 @@
     <li>Review is recorded in the database</li>
     <li>Submission confirmation is displayed to customer</li>
 </ol>  
+
+
 
 ## Worker Cancels Job
 
@@ -160,6 +171,8 @@
     </li>
 </ol>  
 
+
+
 ## Customer Cancels Job
 
 <img src="/docs/use-case-diagrams/customer-cancel-job.jpg">
@@ -187,6 +200,8 @@
         </ul>
     </li>
 </ol>
+
+
 
 ## Worker Marks Job as Complete
 
@@ -218,6 +233,8 @@
     </li>
 </ol>
 
+
+
 ## User Edits/Deletes Account
 
 <img src="/docs/use-case-diagrams/edit-account.jpg">
@@ -240,6 +257,8 @@
     <li>User submits changes.</li>
     <li>The system updates these changes in the database</li>
 </ol>
+
+
 
 ## Owner Reviews Workers
 
