@@ -160,12 +160,33 @@
     </li>
 </ol>  
 
-## Use Case Title
+## Customer Cancels Job
 
-<strong>Participating actors:</strong>  
+<img src="/docs/use-case-diagrams/customer-cancel-job.jpg">
+
+<strong>Participating actors:</strong> Customer  
 <strong>Entry Conditions:</strong>  
+<ul>
+    <li>Customer wishes to cancel job</li>
+    <li>Customer is logged in</li>
+</ul>
 <strong>Exit Conditions:</strong>  
-<strong>Special Requirements:</strong>  
+<ul>
+    <li>Customer cancels job</li>
+    <li>Customer decides not to cancel job</li>
+</ul>
+<strong>Event Flow:</strong>  
+<ol>
+    <li>Customer navigates to Scheduled Jobs page.</li>
+    <li>Customer selects a job and requests to cancel it.</li>
+    <li>
+        <ul>
+            <li>If this Job Listing has a worker associated with it, notify the worker that the job has been canceled.</li>
+            <li>Delete Job Listing from the Job Listings table in the database.</li>
+            <li>Display message to customer confirming the job cancelation.</li>
+        </ul>
+    </li>
+</ol>
 
 ## Use Case Title
 
