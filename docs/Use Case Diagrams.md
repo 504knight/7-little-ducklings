@@ -188,9 +188,46 @@
     </li>
 </ol>
 
+## Worker Marks Job as Complete
+
+<img src="/docs/use-case-diagrams/worker-complete-job.jpg">
+
+<strong>Participating actors:</strong> Worker  
+<strong>Entry Conditions:</strong>  
+<ul>
+    <li>Worker has finished job</li>
+    <li>Worker is logged in</li>
+</ul>
+<strong>Exit Conditions:</strong>  
+<ul>
+    <li>Worker decides not to mark job as complete.</li>
+    <li>Worker marks job as complete.</li>
+</ul>
+<strong>Event Flow:</strong>  
+<ol>
+    <li>Worker navigates to work schedule page.</li>
+    <li>Worker selects a job.</li>
+    <li>System displays option to edit job status.</li>
+    <li>Worker changes job status to completed and submits change.</li>
+    <li>
+        <ul>
+            <li>System updates status of Job Listing in database.</li>
+            <li>System charges the customer's account for the price of the job</li>
+            <li>System transfers money to the worker's account.</li>
+        </ul>
+    </li>
+</ol>
+
 ## Use Case Title
 
 <strong>Participating actors:</strong>  
 <strong>Entry Conditions:</strong>  
 <strong>Exit Conditions:</strong>  
-<strong>Special Requirements:</strong>  
+<strong>Event Flow:</strong> 
+
+## Use Case Title
+
+<strong>Participating actors:</strong>  
+<strong>Entry Conditions:</strong>  
+<strong>Exit Conditions:</strong>  
+<strong>Event Flow:</strong> 
