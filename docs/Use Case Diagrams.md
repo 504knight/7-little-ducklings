@@ -61,6 +61,8 @@
 
 ## User Login
 
+<img src="/docs/use-case-diagrams/user-login.jpg">
+
 <strong>Participating actors:</strong> User  
 <strong>Entry Conditions:</strong>  
 <ul>
