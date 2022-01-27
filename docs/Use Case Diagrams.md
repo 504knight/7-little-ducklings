@@ -276,8 +276,8 @@
 <strong>Event Flow:</strong>  
 <ol>
     <li>Owner navigates to worker review page.</li>
-    <li>System populates list of workers</li>
-    <li>Owner selects employee from list of workers
+    <li>System populates list of workers.</li>
+    <li>Owner selects employee from list of workers.
         <ul>
             <li>Owner requests to view reviews of jobs performed by selected worker.
                 <ul>
