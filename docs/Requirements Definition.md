@@ -48,6 +48,11 @@
 		* 2.3.3. A portion of every transaction will be deposited into the Owner's account balance.
 			* 2.3.3.1. The owner could be able to change the size of the portion.
 
+* 3. System Mechanics
+	* 3.1. System should implement a priority system based on Worker reviews.
+		* 3.1.1. Higher rated workers should be shown jobs first before gradually opening up jobs to a larger and larger Worker pool.
+	* 3.2. System should be able to check the distance between zip codes.
+
 ---
 
 ### Non-functional Requirements
@@ -67,10 +72,9 @@
 
 * 2. System will be deployable.
 
-* 3. System Mechanics
-	* 3.1. System should implement a priority system based on Worker reviews.
-		* 3.1.1. Higher rated workers should be shown jobs first before gradually opening up jobs to a larger and larger Worker pool.
-	* 3.2. System should be able to check the distance between zip codes.
+* 3. System should be secure.
+	* 3.1. System should ensure only authorized access to user accounts.
+	* 3.2. System should avoid needlessly sharing user information.
 
 ---
 
