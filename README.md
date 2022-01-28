@@ -11,7 +11,7 @@ All examples and reference documents will be stored under the folder "docs"
 The plan will also be stored in "docs".
 
 The Django server and all associated files will be stored under "OddJobs."
-(That name is subject to change, I just needed a placeholder.)
+(Name subject to change)
 
 ## Version-Control Procedures
 
@@ -20,9 +20,10 @@ merged to the main branch.
 
 ## Tool Stack Description and Setup Procedure
 
-We will be using Django because it is a simple framework that already includes most of the features
-we might need and uses a programming language we are all fairly familiar with. We can easily
-create database models using the built-in SQLite database.
+- Django: We will be using Django because it is a simple framework that already includes most of the features
+we might need and uses a programming language we are all fairly familiar with. We can easily create database models using the built-in SQLite database.
+
+- Bootstrap: We will use the Bootstrap CSS framework because it is easy to make mobile first apps and Logan Ballard is very familiar with it.
 
 ## Build Instructions
 
