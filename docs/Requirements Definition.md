@@ -1,5 +1,19 @@
 # Requirements Definition
 
+### Introduction and Context
+
+Mowing lawns is an easy way to make some extra cash and is common practice among many teenagers looking to line their pockets. To take advantage of and help grow this market, this project seeks to facilitate communication between those who are offering simple outdoor work and those who are looking to earn some money by doing these types of jobs.
+
+This system will allow Customers to post jobs that they want completed. They will be able to choose from a variety of jobs they want completed and offer however much they are willing to pay someone to do it.
+
+The system will allow Workers to see available jobs. They will be able to claim these jobs and have money automatically transferred into their account from the customer upon completion.
+
+By acting as a line of communication between Customers and Workers, the system will be able to conveniently and safely fulfill the needs of each party.
+
+### Users and their Goals
+
+Several use-case diagrams were made to describe the users of the system, their goals, and how they interact with the system. These diagrams and the information related to them can be found in 
+
 ### Functional Requirements
 
 * 1. User Account Creation and Access
