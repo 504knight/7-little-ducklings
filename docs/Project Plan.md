@@ -27,6 +27,22 @@ We will use Unified Modeling Language (UML) to document user goals, structural c
 
 ## Communication Policies, Procedures, and Tools
 
+### Policies
+
+- Maintain consistent communication with the team through discord and in person meetings.
+- @everyone in Discord when you submit a pull request so it can be reviewed by others before being merged.
+- Comment on parts of pull requests when you see an error or something needs revising.
+
+### Procedures
+
+In person meetings will be held Mondays and Wednesdays in a Library Study Room at 11:30 am. If a team member cannot make it to a meeting in person they will join via the Discord Stand-up voice channel. If that is not possible then it must be communicated with the other team members.
+
+To begin meetings each individual will talk about what they are working on. They will describe successes first and then discuss challenges with the rest of the group.
+
+When brainstorming sessions are needed every individual will write down ideas on sticky notes such that others cannot see their ideas. Then, they will all be discussed and decided upon. This way we preserve creativity within our team.
+
+### Tools
+
 Discord - Main mode of communication. Individual text channels for each Project Milestone and a Stand-up Room voice channel.
 
 GitHub - Formal repository used for submissions, version control, data tracking, and communication with Professor Dan Watson and TA Rob Johnson. GitHub Projects is used as an Agile Sprint board with a Kanban template. The Project boards allow projects to be tracked easily, and big concepts to be broken down into a list of Todos for each sprint.
