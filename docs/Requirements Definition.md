@@ -12,7 +12,7 @@ By acting as a line of communication between Customers and Workers, the system w
 
 ### Users and their Goals
 
-Several use-case diagrams were made to describe the users of the system, their goals, and how they interact with the system. These diagrams and the information related to them can be found in 
+Several use-case diagrams were made to describe the users of the system, their goals, and how they interact with the system. These diagrams and the information related to them can be found in 'Use Case Diagrams.md'.
 
 ### Functional Requirements
 
