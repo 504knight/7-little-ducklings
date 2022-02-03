@@ -27,6 +27,22 @@ We will use Unified Modeling Language (UML) to document user goals, structural c
 
 ## Communication Policies, Procedures, and Tools
 
+### Policies
+
+- Maintain consistent communication with the team through discord and in person meetings.
+- @everyone in Discord when you submit a pull request so it can be reviewed by others before being merged.
+- Comment on parts of pull requests when you see an error or something needs revising.
+
+### Procedures
+
+In person meetings will be held Mondays and Wednesdays in a Library Study Room at 11:30 am. If a team member cannot make it to a meeting in person they will join via the Discord Stand-up voice channel. If that is not possible then it must be communicated with the other team members.
+
+To begin meetings each individual will talk about what they are working on. They will describe successes first and then discuss challenges with the rest of the group.
+
+When brainstorming sessions are needed every individual will write down ideas on sticky notes such that others cannot see their ideas. Then, they will all be discussed and decided upon. This way we preserve creativity within our team.
+
+### Tools
+
 Discord - Main mode of communication. Individual text channels for each Project Milestone and a Stand-up Room voice channel.
 
 GitHub - Formal repository used for submissions, version control, data tracking, and communication with Professor Dan Watson and TA Rob Johnson. GitHub Projects is used as an Agile Sprint board with a Kanban template. The Project boards allow projects to be tracked easily, and big concepts to be broken down into a list of Todos for each sprint.
@@ -34,7 +50,32 @@ GitHub - Formal repository used for submissions, version control, data tracking,
 
 ## Risk Analysis
 
-TODO: Update Risk Analysis
+- Database Structure
+	- Likelihood - Low
+	- Severity - Very High
+	- Consequences - Ineffective models for data lead to complicated code that may result in poor workarounds. Accessing balances, tranactions, account info, reviews, etc. would end up confusing.
+	- Work-Around - None. The system will not function properly without correct database implementation. It is necessary to store information about the customers, workers, jobs, etc.
+- Login
+	- Likelihood - Low
+	- Severity - Medium
+	- Consequences - Poor customer experience getting into the application or signing up for the first time.
+	- Work-Around - None. This is a necessary part of the application due to security and account types.
+- Funds Exchange
+	- Likelihood - Low
+	- Severity - High
+	- Consequences - Incorrect amounts being transferred due to unclear or improperly implemented code.
+	- Work-Around - None.
+- User Interface
+	- Likelihood - Low
+	- Severity - Very High
+	- Consequences - Frustrating experience interacting with the application and performing desired actions. Could become too complex and hard to find all the options frequently used.
+- Hosting
+	- Likelihood - Low
+	- Severity - Medium
+	- Consequences - System will not be able to be access information from the database or be accessed by the user.
+	- Work-Around - Host system through a hosting service.
 
-TEST THIS OUT
+## Configuration Management
+
+See the README.md in the Git repository.
 
