@@ -1,0 +1,6 @@
+#ignore all files in database directory except the models class and population script
+
+dbtest/**
+
+!dbtest/migrations/**
+!dbtest/models.py
