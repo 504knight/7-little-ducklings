@@ -130,4 +130,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'Test.UserObject'
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/Test'
+LOGIN_REDIRECT_URL = '/test'
