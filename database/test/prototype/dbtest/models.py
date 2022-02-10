@@ -6,14 +6,8 @@ from django.db import connection
 class User(AbstractUser):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=25, unique=True, null=False)
-    firstname = models.TextField(null=False)
-    lastname = models.TextField(null=False)
-    email = models.EmailField(null=False)
+    #inherits first_name, last_name, email, and is_active fields already from parent model
     balance = models.FloatField(null=False)
-    archived = models.BooleanField(null=False)
-
-   # def get_jobs(self):
-   #     return Job.objects.filter(customer)
 
     class Meta:
         db_table = 'users'
