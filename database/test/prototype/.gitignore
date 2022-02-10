@@ -1,7 +1,9 @@
 #ignore all files in database directory except the models class and population script
 
 dbtest/**
-testproject/**
+prototype/**
+.idea/**
+manage.py
 
 !dbtest/migrations/**
 !dbtest/models.py

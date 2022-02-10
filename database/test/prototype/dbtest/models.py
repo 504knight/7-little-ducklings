@@ -1,11 +1,9 @@
-from django.db import models
-
-# Create your models here.
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db import connection
 
 
-class User(models.Model):
+class User(AbstractUser):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=25, unique=True, null=False)
     firstname = models.TextField(null=False)
@@ -13,6 +11,9 @@ class User(models.Model):
     email = models.EmailField(null=False)
     balance = models.FloatField(null=False)
     archived = models.BooleanField(null=False)
+
+   # def get_jobs(self):
+   #     return Job.objects.filter(customer)
 
     class Meta:
         db_table = 'users'
@@ -23,6 +24,8 @@ class Job(models.Model):
     customer = models.ForeignKey(User, null=False, on_delete=models.CASCADE, related_name='+')
     worker = models.ForeignKey(User, on_delete=models.CASCADE, related_name='+')
     job_title = models.CharField(max_length=200, null=False)
+    job_description = models.TextField(null=False)
+    location = models.TextField(null=False)
     price = models.FloatField(null=False)
     start_time = models.DateTimeField(null=False)
     end_time = models.DateTimeField(null=False)
