@@ -10,7 +10,7 @@ cursor.execute("DELETE FROM reviews")
 
 #Insert test data
 for i in range(10):
-    testUser = User(password="testpassword", first_name="Test" + i, last_name="User"+i, username= "testuser"+i,email="testemail@mail.com",balance=0.00, archived=False)
+    testUser = User(password="testpassword", first_name="Test" + str(i), last_name="User"+str(i), username= "testuser"+str(i),email="testemail@mail.com",balance=0.00, is_active=True)
     testUser.save()
 
 User.objects.all()
