@@ -4,7 +4,7 @@
 
 ## User Registers for an Account
 
-<img src="/docs/use-case-diagrams/user-creates-account.jpg">
+<img src="/docs/uml/use-case-diagrams/user-creates-account.jpg">
 
 <strong>Participating actors:</strong> User  
 <strong>Entry Conditions:</strong>
@@ -34,7 +34,7 @@
 
 ## Customer Creates a Work Order/Request
 
-<img src="/docs/use-case-diagrams/customer-creates-work-request.jpg">
+<img src="/docs/uml/use-case-diagrams/customer-creates-work-request.jpg">
 
 <strong>Participating actors:</strong> Customer  
 <strong>Entry Conditions:</strong> 
@@ -65,7 +65,7 @@
 
 ## User Login
 
-<img src="/docs/use-case-diagrams/user-login.jpg">
+<img src="/docs/uml/use-case-diagrams/user-login.jpg">
 
 <strong>Participating actors:</strong> User  
 <strong>Entry Conditions:</strong>  
@@ -93,7 +93,7 @@
 
 ## Worker Selects and Accepts a Job
 
-<img src="/docs/use-case-diagrams/accept-job.jpg">
+<img src="/docs/uml/use-case-diagrams/accept-job.jpg">
 
 <strong>Participating actors:</strong> Worker  
 <strong>Entry Conditions:</strong>  
@@ -117,7 +117,7 @@
 
 ## Customer Leaves Review of Job
 
-<img src="/docs/use-case-diagrams/user-review.jpg">
+<img src="/docs/uml/use-case-diagrams/user-review.jpg">
 
 <strong>Participating actors:</strong> Customer  
 <strong>Entry Conditions:</strong>  
@@ -144,7 +144,7 @@
 
 ## Worker Cancels Job
 
-<img src="/docs/use-case-diagrams/worker-cancel-job.jpg">
+<img src="/docs/uml/use-case-diagrams/worker-cancel-job.jpg">
 
 <strong>Participating actors:</strong> Worker  
 <strong>Entry Conditions:</strong>  
@@ -174,7 +174,7 @@
 
 ## Customer Cancels Job
 
-<img src="/docs/use-case-diagrams/customer-cancel-job.jpg">
+<img src="/docs/uml/use-case-diagrams/customer-cancel-job.jpg">
 
 <strong>Participating actors:</strong> Customer  
 <strong>Entry Conditions:</strong>  
@@ -204,7 +204,7 @@
 
 ## Worker Marks Job as Complete
 
-<img src="/docs/use-case-diagrams/worker-complete-job.jpg">
+<img src="/docs/uml/use-case-diagrams/worker-complete-job.jpg">
 
 <strong>Participating actors:</strong> Worker  
 <strong>Entry Conditions:</strong>  
@@ -236,7 +236,7 @@
 
 ## User Edits/Deletes Account
 
-<img src="/docs/use-case-diagrams/edit-account.jpg">
+<img src="/docs/uml/use-case-diagrams/edit-account.jpg">
 
 <strong>Participating actors:</strong> User  
 <strong>Entry Conditions:</strong>  
@@ -261,7 +261,7 @@
 
 ## Owner Reviews Workers
 
-<img src="/docs/use-case-diagrams/owner-review.jpg">
+<img src="/docs/uml/use-case-diagrams/owner-review.jpg">
 
 <strong>Participating actors:</strong> Owner  
 <strong>Entry Conditions:</strong>  
