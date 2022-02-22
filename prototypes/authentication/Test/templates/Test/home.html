@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<div>
+    <ul>
+        <li><a href="{% url 'Test:home' %}">Home Page</a></li>
+        <li><a href="{% url 'Test:new_user' %}">New User</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'Test:logout' %}">Logout</a></li>
+        <li><a href="{% url 'Test:delete_user' %}">Delete User</a></li>
+        <li><a href="{% url 'Test:login_test' %}">Test Login</a></li>
+    </ul>
+</div>
+<div>
+    <div>
+        <h1>Home Page</h1>
+        {% if users %}
+            <ul>
+            {% for user in users %}
+                <li>{{ user.username }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    {% if request.user.is_authenticated %}
+    <div>
+        <p>Currently logged in as: {{ user.username }}</p>
+    </div>
+    {% else %}
+        <div>
+        <p>Not logged in.</p>
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>
