@@ -12,14 +12,14 @@ def index(request):
         'request': request,
                }
 
-    return render(request, 'Test/home.html', context)
+    return render(request, 'OddJobs/index.html', context)
 
 @login_required
 def login_test(request):
-    return render(request, "Test/login_test.html")
+    return render(request, "OddJobs/login_test.html")
 
 def new_user(request):
-    return render(request, 'Test/input_new_user.html')
+    return render(request, 'OddJobs/input_new_user.html')
 
 def create_user(request):
 
@@ -42,13 +42,13 @@ def create_user(request):
 
     login(request, user=user_to_be_made)
 
-    return render(request, 'Test/user_created.html', context=context)
+    return render(request, 'OddJobbs/user_created.html', context=context)
 
 
 def logout_view(request):
     logout(request)
 
-    return redirect('Test:home')
+    return redirect('OddJobs:index')
 
 
 def delete_user(request):
@@ -56,4 +56,4 @@ def delete_user(request):
     if request.user.is_authenticated:
         request.user.delete()
 
-    return redirect('Test:home')
+    return redirect('OddJobbs:index')
