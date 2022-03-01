@@ -22,7 +22,6 @@ def new_user(request):
     return render(request, 'OddJobs/input_new_user.html')
 
 def create_user(request):
-
     username = request.POST['username']
     email = request.POST['email']
     fname = request.POST['fname']
@@ -42,7 +41,7 @@ def create_user(request):
 
     login(request, user=user_to_be_made)
 
-    return render(request, 'OddJobbs/user_created.html', context=context)
+    return render(request, 'OddJobs/user_created.html', context=context)
 
 
 def logout_view(request):
