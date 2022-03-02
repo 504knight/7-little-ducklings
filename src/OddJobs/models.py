@@ -5,9 +5,11 @@ from django.db import connection
 
 class User(AbstractUser):
     id = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=25, unique=True, null=False)
-    #inherits first_name, last_name, email, and is_active fields already from parent model
+    username = models.CharField(max_length=40, unique=True, null=False)
+    #inherits first_name, last_name, email, is_active, and password fields already from parent model
     balance = models.FloatField(null=False)
+
+    USERNAME_FIELD = 'username'
 
     def __str__(self):
         return self.first_name + " " + self.last_name
