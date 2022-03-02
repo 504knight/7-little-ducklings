@@ -7,7 +7,7 @@ class User(AbstractUser):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=40, unique=True, null=False)
     #inherits first_name, last_name, email, is_active, and password fields already from parent model
-    balance = models.FloatField(null=False)
+    balance = models.FloatField(null=False, default=0)
 
     USERNAME_FIELD = 'username'
 
