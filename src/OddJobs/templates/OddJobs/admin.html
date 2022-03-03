@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'OddJobs/css/custom.min.css'%}" type="text/css"/>
+
+    <title>Admin</title>
+</head>
+<body>
+
+
+    <h1>Admin Page</h1>
+    {% for user in users %}
+    <div>
+        <ul>
+            <li>Username: {{ user.username }}</li>
+            <li>ID: {{ user.id }}</li>
+            <li>Balance: {{ user.balance }}</li>
+            <li>Type: {{ user.userType }}</li>
+        </ul>
+    </div>
+    {% endfor %}
+</body>
+</html>

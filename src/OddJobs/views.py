@@ -1,10 +1,14 @@
 from django.contrib.auth import login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import User
 
 
 # Create your views here.
+
+def admin_check(user):
+    return user.username == "Matthew"
 
 def index(request):
     context = {
@@ -26,9 +30,10 @@ def create_user(request):
     email = request.POST['email']
     fname = request.POST['fname']
     lname = request.POST['lname']
+    balance = 0
     password = request.POST['password']
 
-    user_to_be_made = User(username=username)
+    user_to_be_made = User(username=username, balance=balance)
 
     user_to_be_made.set_password(password)
 
@@ -55,4 +60,15 @@ def delete_user(request):
     if request.user.is_authenticated:
         request.user.delete()
 
-    return redirect('OddJobbs:index')
+    return redirect('OddJobs:index')
+
+
+def admin(request):
+    if request.user.userType != "admin":
+        return redirect('OddJobs:index')
+    else:
+        users = User.objects.all()
+        context = {
+            'users': users
+        }
+        return render(request, 'OddJobs/admin.html', context)
