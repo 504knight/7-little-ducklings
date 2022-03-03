@@ -3,16 +3,14 @@ from django.db import models
 from django.db import connection
 from enum import IntEnum, unique
 
+@unique
+class UserType(IntEnum):
+    CUSTOMER = 0
+    WORKER = 1
+    OWNER = 2
+    ADMIN = 3
 
 class User(AbstractUser):
-
-    @unique
-    class UserType(IntEnum):
-        CUSTOMER = 0
-        WORKER = 1
-        OWNER = 2
-        ADMIN = 3
-
 
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=40, unique=True, null=False)
