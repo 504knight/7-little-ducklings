@@ -1,13 +1,24 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db import connection
+from enum import IntEnum, unique
 
 
 class User(AbstractUser):
+
+    @unique
+    class UserType(IntEnum):
+        CUSTOMER = 0
+        WORKER = 1
+        OWNER = 2
+        ADMIN = 3
+
+
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=40, unique=True, null=False)
     #inherits first_name, last_name, email, is_active, and password fields already from parent model
     balance = models.FloatField(null=False, default=0)
+    type = models.SmallIntegerField(null=False, default=UserType.CUSTOMER)
 
     USERNAME_FIELD = 'username'
 
