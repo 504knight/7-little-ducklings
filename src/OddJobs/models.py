@@ -24,6 +24,8 @@ class User(AbstractUser):
         return self.first_name + " " + self.last_name
 
     def get_jobs(self):
+        if type == UserType.WORKER:
+            return Job.objects.raw(f"SELECT * FROM OddJobs_jobs WHERE worker_id={self.id}")
         return Job.objects.raw(f"SELECT * FROM OddJobs_jobs WHERE worker_id={self.id} OR customer_id={self.id}")
 
     #initially start_time will be the start time of the time window in which the customer wants the job completed
@@ -31,7 +33,9 @@ class User(AbstractUser):
 
     #method needs testing to see how django stores datetime in sqlite (no datetime data-storage-type in sqlite, can be declared as datetime, but stored text or int)
     def get_future_jobs(self):
-        return Job.objects.raw(f"SELECT * FROM OddJobs_jobs WHERE (worker_id={self.id} OR customer_id={self.id}) AND start_time >= DATE('now')")
+        if type == UserType.WORKER:
+            return Job.objects.raw(f"SELECT * FROM OddJobs_jobs WHERE worker_id={self.id} AND start_time >= DATE('now')")
+        return Job.objects.raw(f"SELECT * FROM OddJobs_jobs WHERE customer_id={self.id} AND start_time >= Date('now')")
 
     class Meta:
         db_table = 'users'
