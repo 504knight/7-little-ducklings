@@ -29,7 +29,8 @@ class User(AbstractUser):
 
     def get_job_history(self, start_date, end_date):
         type_condition = 'customer_id' if self.type == UserType.CUSTOMER else 'worker_id'
-        return Job.objects.raw(f"SELECT * FROM OddJobs_jobs WHERE {type_condition} = %s AND start_time >= %s AND start_time <= %s", [self.id, start_date, end_date])
+        return Job.objects.raw(f"SELECT * FROM OddJobs_jobs WHERE {type_condition} = %s AND completed = %s AND start_time >= %s AND start_time <= %s",
+                               [self.id, True, start_date, end_date])
 
     #initially start_time will be the start time of the time window in which the customer wants the job completed
     #when worker accepts a job update job start_time to be the time they have chosen to start the job
@@ -55,15 +56,9 @@ class Job(models.Model):
     end_time = models.DateTimeField(null=False)
     duration = models.FloatField(null=False)
     completed = models.BooleanField(null=False)
+    rating = models.FloatField(null=True)
 
     class Meta:
         db_table = 'jobs'
 
 
-class Review(models.Model):
-    id = models.AutoField(primary_key=True)
-    job = models.OneToOneField(Job, null=False, related_name='+', on_delete=models.CASCADE)
-    score = models.SmallIntegerField(null=True)
-
-    class Meta:
-        db_table = "reviews"

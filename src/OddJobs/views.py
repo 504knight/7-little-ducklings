@@ -70,6 +70,7 @@ def job_history_data(request):
     else:
         try:
             job_history = JobHistory.get_job_history(request)
+            return render(request, 'OddJobs/job_calendar.html', {'job_history': job_history})
         except:
             raise Http404("Error obtaining job history")
 
