@@ -16,7 +16,11 @@ def index(request):
 
 @login_required
 def login_test(request):
-    return render(request, "OddJobs/login_test.html")
+    context = {
+        'users': User.objects.all(),
+        'request': request,
+    }
+    return render(request, "OddJobs/index.html", context)
 
 def new_user(request):
     return render(request, 'OddJobs/input_new_user.html')
@@ -28,7 +32,7 @@ def create_user(request):
     lname = request.POST['lname']
     password = request.POST['password']
 
-    user_to_be_made = User(username=username)
+    user_to_be_made = User(username=username, password=password, first_name=fname, last_name=lname, email=email)
 
     user_to_be_made.set_password(password)
 
@@ -55,4 +59,4 @@ def delete_user(request):
     if request.user.is_authenticated:
         request.user.delete()
 
-    return redirect('OddJobbs:index')
+    return redirect('OddJobs:index')

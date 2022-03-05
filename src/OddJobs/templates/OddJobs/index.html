@@ -42,9 +42,15 @@
               </ul>
             </li>
           </ul>
-          <div class="d-flex">
-            <a class="btn btn-outline-info fw-bold" href="#"><i class="fas fa-lg fa-user"></i> Account</a>
-          </div>
+            {% if user.is_authenticated %}
+            <div class="d-flex">
+                <a class="btn btn-outline-info fw-bold" href="#"><i class="fas fa-lg fa-user"></i> {{ user.first_name }}</a>
+            </div>
+            {% else %}
+            <div class="d-flex">
+                <a class="btn btn-outline-info fw-bold" href="{% url 'OddJobs:login' %}"><i class="fas fa-lg fa-user"></i> Login</a>
+            </div>
+            {% endif %}
         </div>
       </div>
     </nav>
