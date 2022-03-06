@@ -61,16 +61,18 @@ def delete_user(request):
 #job-history
 def job_history_page(request):
     print("unimplemented")
+    if not request.user.is_authenticated:
+        return redirect('OddJobs:index')
 
-def job_history_data(request):
-    current_user = request.user
-    context = {}
-    if 'start_date' not in request.GET or 'end_date' not in request.GET:
+def job_history_listings(request):
+    if not request.user.is_authenticated:
+        return redirect('OddJobs:index')
+    elif 'start_date' not in request.GET or 'end_date' not in request.GET:
         raise Http404("Missing required parameters - must have start_date and end_date")
     else:
         try:
             job_history = JobHistory.get_job_history(request)
-            return render(request, 'OddJobs/job_calendar.html', {'job_history': job_history})
+            return render(request, 'OddJobs/job_calendar.html', {'user': request.user, 'job_history': job_history})
         except:
             raise Http404("Error obtaining job history")
 
