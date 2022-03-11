@@ -11,11 +11,9 @@ class UserType(IntEnum):
     ADMIN = 3
 
 class User(AbstractUser):
-<<<<<<< HEAD
-    userType = models.CharField(max_length=10, null=False)
-=======
 
->>>>>>> 791ec8350441fa2ef9fa59c9d8c9f8a6adbc043d
+    userType = models.CharField(max_length=10, null=False)
+
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=40, unique=True, null=False)
     #inherits first_name, last_name, email, is_active, and password fields already from parent model
