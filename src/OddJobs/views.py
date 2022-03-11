@@ -2,7 +2,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import User
+from .models import User, Job
 
 
 # Create your views here.
@@ -17,10 +17,6 @@ def index(request):
                }
 
     return render(request, 'OddJobs/index.html', context)
-
-@login_required
-def login_test(request):
-    return render(request, "OddJobs/login_test.html")
 
 def new_user(request):
     return render(request, 'OddJobs/input_new_user.html')
@@ -68,7 +64,9 @@ def admin(request):
         return redirect('OddJobs:index')
     else:
         users = User.objects.all()
+        jobs = Job.objects.all()
         context = {
-            'users': users
+            'users': users,
+            'jobs': jobs
         }
         return render(request, 'OddJobs/admin.html', context)

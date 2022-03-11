@@ -10,6 +10,7 @@ class UserType(IntEnum):
     OWNER = 2
     ADMIN = 3
 
+
 class User(AbstractUser):
 
     userType = models.CharField(max_length=10, null=False)

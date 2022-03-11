@@ -15,15 +15,54 @@
 
 
     <h1>Admin Page</h1>
-    {% for user in users %}
+    <h2>Users</h2>
     <div>
-        <ul>
-            <li>Username: {{ user.username }}</li>
-            <li>ID: {{ user.id }}</li>
-            <li>Balance: {{ user.balance }}</li>
-            <li>Type: {{ user.userType }}</li>
-        </ul>
+        <table class="container my-5">
+            <tr>
+                <th>Username</th>
+                <th>User ID</th>
+                <th>Balance</th>
+                <th>Type</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.id }}</td>
+                <td>${{ user.balance|floatformat:2 }}</td>
+                <td>{{ user.userType }}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
-    {% endfor %}
+    <h2>Jobs</h2>
+    <div>
+        <table class="container my-5">
+            <tr>
+                <th>Title</th>
+                <th>Job ID</th>
+                <th>Customer</th>
+                <th>Worker</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Duration</th>
+            </tr>
+            {% for job in jobs %}
+            <tr>
+                <td>{{ job.job_title }}</td>
+                <td>{{ job.id }}</td>
+                <td>{{ job.customer.username }}</td>
+                <td>{{ job.worker.username }}</td>
+                <td>{{ job.job_description }}</td>
+                <td>{{ job.price }}</td>
+                <td>{{ job.start_time }}</td>
+                <td>{{ job.end_time }}</td>
+                <td>{{ job.duration }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
 </body>
 </html>
