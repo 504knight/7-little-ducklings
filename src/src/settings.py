@@ -128,5 +128,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'OddJobs.User'
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/OddJobs'
+LOGIN_REDIRECT_URL = '/oddjobs'
 

@@ -10,7 +10,10 @@ class UserType(IntEnum):
     OWNER = 2
     ADMIN = 3
 
+
 class User(AbstractUser):
+
+    userType = models.CharField(max_length=10, null=False)
 
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=40, unique=True, null=False)
