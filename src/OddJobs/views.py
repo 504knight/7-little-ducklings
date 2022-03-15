@@ -58,7 +58,7 @@ def delete_user(request):
 
     return redirect('OddJobs:index')
 
-
+@login_required()
 def admin(request):
     if request.user.userType != "admin":
         return redirect('OddJobs:index')
