@@ -60,8 +60,8 @@ def delete_user(request):
 
 #job-history
 def job_history_page(request):
-    #if not request.user.is_authenticated:
-     #   return redirect('OddJobs:index')
+    if not request.user.is_authenticated:
+        return redirect('OddJobs:index')
     return render(request, 'OddJobs/job_history.html', {})
 
 
