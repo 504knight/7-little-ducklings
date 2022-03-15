@@ -60,9 +60,10 @@ def delete_user(request):
 
 #job-history
 def job_history_page(request):
-    print("unimplemented")
-    if not request.user.is_authenticated:
-        return redirect('OddJobs:index')
+    #if not request.user.is_authenticated:
+     #   return redirect('OddJobs:index')
+    return render(request, 'OddJobs/job_history.html', {})
+
 
 def job_history_listings(request):
     if not request.user.is_authenticated:
@@ -72,7 +73,7 @@ def job_history_listings(request):
     else:
         try:
             job_history = JobHistory.get_job_history(request)
-            return render(request, 'OddJobs/job_calendar.html', {'user': request.user, 'job_history': job_history})
+            return render(request, 'OddJobs/job_history_listings.html', {'user': request.user, 'job_history': job_history})
         except:
             raise Http404("Error obtaining job history")
 
