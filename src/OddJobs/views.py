@@ -19,6 +19,15 @@ def index(request):
 
     return render(request, 'OddJobs/index.html', context)
 
+
+@login_required
+def login_test(request):
+    context = {
+        'users': User.objects.all(),
+        'request': request,
+    }
+    return render(request, "OddJobs/index.html", context)
+
 def new_user(request):
     return render(request, 'OddJobs/input_new_user.html')
 
@@ -30,7 +39,7 @@ def create_user(request):
     balance = 0
     password = request.POST['password']
 
-    user_to_be_made = User(username=username, balance=balance)
+    user_to_be_made = User(username=username, password=password, first_name=fname, last_name=lname, email=email)
 
     user_to_be_made.set_password(password)
 
@@ -114,5 +123,4 @@ class JobHistory:
         start_date = request.Get['start_date']
         end_date = request.Get['end_date']
         return list(current_user.get_job_history(start_date, end_date))
-
 
