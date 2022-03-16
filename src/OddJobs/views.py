@@ -91,7 +91,20 @@ def job_history_listings(request):
         except:
             raise Http404("Error obtaining job history")
 
+def worker_available_jobs(request):
+    #if not request.user.is_authenticated:
+        #return redirect('OddJobs:index')
+    return render(request, 'OddJobs/workeravailable.html')
 
+def worker_accepted_jobs(request):
+    #if not request.user.is_authenticated:
+        #return redirect('OddJobs:index')
+    return render(request, 'OddJobs/workeraccepted.html')
+
+def customer_active_jobs(request):
+    #if not request.user.is_authenticated:
+        #return redirect('OddJobs:index')
+    return render(request, 'OddJobs/customeractive.html')
 
 class JobHistory:
 
