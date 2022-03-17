@@ -13,8 +13,6 @@ class UserType(IntEnum):
 
 class User(AbstractUser):
 
-    userType = models.CharField(max_length=10, null=False)
-
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=40, unique=True, null=False)
     #inherits first_name, last_name, email, is_active, and password fields already from parent model
