@@ -50,10 +50,10 @@ class User(AbstractUser):
         """
         if self.type != UserType.WORKER:
             print("Only workers can accept jobs.")
-            return False;
+            return False
         elif chosen_start_time < job.start_time or chosen_start_time > job.end_time:
             #don't allow a worker to choose a job at a time that is not within the customer's time window
-            return False;
+            return False
         else:
             job.worker = self
             job.start_time = chosen_start_time
