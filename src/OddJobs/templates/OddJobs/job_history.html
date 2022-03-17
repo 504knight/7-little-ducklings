@@ -7,9 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'OddJobs/css/custom.min.css'%}" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'OddJobs/css/custom.min.css'%}" type="text/css">
 
-    <title>Odd Jobs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'OddJobs/css/job_history_style.css' %}" type="text/css">
+
+    <!-- Fontawesome icons -->
+    <script src="https://kit.fontawesome.com/405b071dc7.js" crossorigin="anonymous"></script>
+
+    <title>Job History</title>
 </head>
 <body>
     <!-- Top Navigation -->
@@ -32,25 +38,27 @@
                 Dropdown
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="{% url 'OddJobs:job_history' %}">View Job History</a></li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
-            </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+            {% if user.is_authenticated %}
+            <div class="d-flex">
+                <a class="btn btn-outline-info fw-bold" href="#"><i class="fas fa-lg fa-user"></i> {{ user.first_name }}</a>
+            </div>
+            {% else %}
+            <div class="d-flex">
+                <a class="btn btn-outline-info fw-bold" href="{% url 'OddJobs:login' %}"><i class="fas fa-lg fa-user"></i> Login</a>
+            </div>
+            {% endif %}
         </div>
       </div>
     </nav>
 
-    <div>
+    <div class="content-div">
         <h1>Job History</h1>
         <label for="start-date-input">Start Date:</label>
         <input type="date" id="start-date-input" class="date-input" name="start-date-input">
@@ -58,7 +66,13 @@
         <input type="date"  id="end-date-input" class="date-input" name="end-date-input">
         <button type="button" id="submit-btn" onclick="reloadJobListings()">Get Job History</button>
 
-        <table id="history-table">
+        <br>
+        <br>
+        <p>Click on a job to leave/edit a rating.</p>
+        <br>
+        <br>
+
+        <table id="history-table" class="table">
             
         </table>
 
