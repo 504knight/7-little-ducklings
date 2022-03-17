@@ -58,6 +58,7 @@ class User(AbstractUser):
             job.worker = self
             job.start_time = chosen_start_time
             job.save()
+            return True
 
     @staticmethod
     def is_valid_time(chosen_time, start_time, end_time):
