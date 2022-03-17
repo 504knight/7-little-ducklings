@@ -9,6 +9,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'OddJobs/css/custom.min.css'%}" type="text/css"/>
 
+    <!-- Fontawesome icons -->
+    <script src="https://kit.fontawesome.com/405b071dc7.js" crossorigin="anonymous"></script>
+
     <title>Odd Jobs</title>
 </head>
 <body>
@@ -25,7 +28,7 @@
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="{% url 'OddJobs:job_history' %}">Job History</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,14 +41,16 @@
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
-            </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+            {% if user.is_authenticated %}
+            <div class="d-flex">
+                <a class="btn btn-outline-info fw-bold" href="#"><i class="fas fa-lg fa-user"></i> {{ user.first_name }}</a>
+            </div>
+            {% else %}
+            <div class="d-flex">
+                <a class="btn btn-outline-info fw-bold" href="{% url 'OddJobs:login' %}"><i class="fas fa-lg fa-user"></i> Login</a>
+            </div>
+            {% endif %}
         </div>
       </div>
     </nav>
@@ -59,7 +64,7 @@
         </div>
         <div class="row">
             {% for user in users %}
-            <div class="col-lg-4 mt-3 mt-lg-0">
+            <div class="col-lg-4 my-3 mt-lg-0">
                 <div class="card">
                     <img src="{% static 'OddJobs/images/cat.jpg' %}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -69,7 +74,7 @@
                             Email: {{ user.email }}<br>
                             Last login: {{ user.last_login }}<br>
                             Date joined: {{ user.date_joined }}</p>
-                        <div class="text-end"><a href="#" class="btn btn-primary">Go somewhere</a></div>
+                        <div class="text-end"><a href="#" class="btn btn-info">Go somewhere</a></div>
                     </div>
                 </div>
             </div>

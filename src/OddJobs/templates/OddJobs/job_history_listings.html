@@ -10,9 +10,10 @@
     <th>Location</th>
     <th>Price</th>
     <th>Date</th>
+    <th>Rating</th>
 </tr>
-{% for job in job_history%}
-<tr>
+{% for job in job_history %}
+<tr class="clickable-row">
     <td>{{ job.id }}</td>
     {% if user.type == 1 %}
     <td>{{ job.customer.first_name }} {{ job.customer.last_name }}</td>
@@ -25,5 +26,14 @@
     <td>{{ job.location }}</td>
     <td>{{ job.price }}</td>
     <td>{{ job.start_time }}</td>
+    <td>
+        {% for i in range %}
+            {% if i <= job.rating %}
+                <span class="fa fa-star checked"></span>
+            {% else %}
+                <span class="fa fa-star"></span>
+            {% endif %}
+        {% endfor %}
+    </td>
 </tr>
 {% endfor %}
