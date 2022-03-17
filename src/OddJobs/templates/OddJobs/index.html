@@ -64,7 +64,7 @@
         </div>
         <div class="row">
             {% for user in users %}
-            <div class="col-lg-4 mt-3 mt-lg-0 mb-3">
+            <div class="col-lg-4 my-3 mt-lg-0">
                 <div class="card">
                     <img src="{% static 'OddJobs/images/cat.jpg' %}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -74,7 +74,7 @@
                             Email: {{ user.email }}<br>
                             Last login: {{ user.last_login }}<br>
                             Date joined: {{ user.date_joined }}</p>
-                        <div class="text-end"><a href="#" class="btn btn-primary">Go somewhere</a></div>
+                        <div class="text-end"><a href="#" class="btn btn-info">Go somewhere</a></div>
                     </div>
                 </div>
             </div>
