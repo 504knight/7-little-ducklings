@@ -1,4 +1,4 @@
-let jobHistoryUrl = `${window.location.origin}/job_history_listings`;
+let jobHistoryUrl = `${window.location.origin}/oddjobs/job_history_listings`;
 
 var reloadJobListings = function(){
     //add error handling
