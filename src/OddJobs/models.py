@@ -20,6 +20,7 @@ class User(AbstractUser):
     #inherits first_name, last_name, email, is_active, and password fields already from parent model
     balance = models.FloatField(null=False, default=0)
     type = models.SmallIntegerField(null=False, default=UserType.CUSTOMER)
+    email = models.EmailField(max_length=254, null=False, unique=True) #must override because default field in super does not enforce a unique constraint
 
     USERNAME_FIELD = 'username'
 
