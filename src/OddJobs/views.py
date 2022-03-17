@@ -1,7 +1,7 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import User, Job
 from django.http import Http404
 
@@ -95,10 +95,32 @@ def job_history_listings(request):
         raise Http404("Missing required parameters - must have start_date and end_date")
     else:
         try:
+            print(str(request.user))
             job_history = JobHistory.get_job_history(request)
-            return render(request, 'OddJobs/job_history_listings.html', {'user': request.user, 'job_history': job_history})
+            return render(request, 'OddJobs/job_history_listings.html', {'user': request.user, 'job_history': job_history, 'range': range(1, 6)})
         except:
             raise Http404("Error obtaining job history")
+
+
+def rating_popup(request, job_id):
+    job = get_object_or_404(Job, pk=job_id)
+    if not request.user.is_authenticated or job.customer != request.user:
+        return redirect('OddJobs:index')
+    return render(request, 'OddJobs/rating_popup.html', {'job_id': job_id})
+
+def submit_rating(request, job_id):
+    job = get_object_or_404(Job, pk=job_id)
+    if not request.user.is_authenticated or job.customer != request.user:
+        return redirect('OddJobs:index')
+    try:
+        selected_rating = int(request.POST['rating'])
+    except:
+        raise Http404("Error Submitting Rating")
+    else:
+        job.rating = selected_rating
+        job.save()
+        return redirect('OddJobs:job_history')
+
 
 def worker_available_jobs(request):
     #if not request.user.is_authenticated:
@@ -115,12 +137,16 @@ def customer_active_jobs(request):
         #return redirect('OddJobs:index')
     return render(request, 'OddJobs/customeractive.html')
 
+
 class JobHistory:
 
     @staticmethod
     def get_job_history(request):
         current_user = request.user
-        start_date = request.Get['start_date']
-        end_date = request.Get['end_date']
+        start_date = request.GET['start_date']
+        end_date = request.GET['end_date']
+
+        print(f'Current User: {current_user}\nStart Date: {start_date}\nEnd Date: {end_date}')
+
         return list(current_user.get_job_history(start_date, end_date))
 
