@@ -3,6 +3,7 @@ from django.db import models
 from django.db import connection
 from enum import IntEnum, unique
 from datetime import datetime
+import re
 
 @unique
 class UserType(IntEnum):
@@ -59,6 +60,25 @@ class User(AbstractUser):
             job.start_time = chosen_start_time
             job.save()
             return True
+
+    def update_balance(self, action, amount):
+        if re.fullmatch("^\\d+\\.{0,1}\\d{0,2}$", str(amount)) is not None and float(amount) >= 0:
+            print("matched")
+            if int(action) == 0: #deposit
+                print("deposit start")
+                self.balance += float(amount)
+                self.save()
+                print("deposit end")
+            elif int(action) == 1 and self.balance >= float(amount): #withdraw
+                print("withdraw start")
+                self.balance -= float(amount)
+                self.save()
+            else:
+                print("Invalid Balance Action")
+                return False
+            return True
+        return False
+
 
     @staticmethod
     def is_valid_time(chosen_time, start_time, end_time):

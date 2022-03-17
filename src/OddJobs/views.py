@@ -108,6 +108,7 @@ def rating_popup(request, job_id):
         return redirect('OddJobs:index')
     return render(request, 'OddJobs/rating_popup.html', {'job_id': job_id})
 
+
 def submit_rating(request, job_id):
     job = get_object_or_404(Job, pk=job_id)
     if not request.user.is_authenticated or job.customer != request.user:
@@ -120,6 +121,28 @@ def submit_rating(request, job_id):
         job.rating = selected_rating
         job.save()
         return redirect('OddJobs:job_history')
+
+
+def balance_page(request, err_msg=""):
+    print("Balance Pager error message: " + str(err_msg))
+    if request.user.is_authenticated:
+        return render(request, 'OddJobs/balance_page.html', {'err_msg': err_msg})
+    else:
+        return redirect('OddJobs:index')
+
+
+def update_balance(request):
+    if not request.user.is_authenticated:
+        return redirect('OddJobs:index')
+    try:
+        if not request.user.update_balance(request.POST['action'], request.POST['amount']):
+            return redirect('OddJobs:balance_page', err_msg="Invalid amount.")
+    except:
+        return redirect('OddJobs:balance_page', err_msg="Error updating balance.")
+    else:
+        return redirect('OddJobs:balance_page')
+
+
 
 
 def worker_available_jobs(request):
