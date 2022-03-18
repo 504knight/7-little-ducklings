@@ -2,8 +2,10 @@ let usernameRequestUrl = `${window.location.origin}/oddjobs/request_username`;
 let resetRequestUrl = `${window.location.origin}/oddjobs/reset_code`;
 let validEmailRegEx = /^\w+@\w+\.\w+$/;
 
+let archiveConfirmed = false;
 
-requestUsername = function() {
+
+var requestUsername = function() {
     let email = getEmail();
     if(email !== null){
         fetch(`${usernameRequestUrl}/${email}`)
@@ -23,7 +25,7 @@ requestUsername = function() {
     
 }
 
-sendResetCode = function(){
+var sendResetCode = function(){
     let email = getEmail2();
     if(email !== null){
         fetch(`${resetRequestUrl}/${email}`)
@@ -41,7 +43,7 @@ sendResetCode = function(){
     }
 }
 
-getEmail = function() {
+var getEmail = function() {
     let emailInput = document.querySelector("#email-input");
     let email = emailInput.value;
     if(validEmailRegEx.test(email)){
@@ -51,7 +53,7 @@ getEmail = function() {
     return null;
 }
 
-getEmail2 = function() {
+var getEmail2 = function() {
     let emailInput = document.querySelector("#reset-email-input");
     let email = emailInput.value;
     if(validEmailRegEx.test(email)){
@@ -59,4 +61,18 @@ getEmail2 = function() {
     }
     alert("Invalid Email Format");
     return null;
+}
+
+var showArchiveForm = function(){
+    let archiveForm = document.querySelector("#archive-form");
+    archiveForm.removeAttribute('hidden');
+    let archiveBtn = document.querySelector("#archive-btn");
+    archiveBtn.setAttribute('hidden', 'true');
+}
+
+var hideArchiveForm = function(){
+    let archiveForm = document.querySelector("#archive-form");
+    archiveForm.setAttribute('hidden', 'true');
+    let archiveBtn = document.querySelector("#archive-btn");
+    archiveBtn.removeAttribute('hidden');
 }
