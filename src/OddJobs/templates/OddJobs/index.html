@@ -43,13 +43,14 @@
             </li>
           </ul>
             {% if user.is_authenticated %}
-            <div class="d-flex">
-                <a class="btn btn-outline-info fw-bold" href="#"><i class="fas fa-lg fa-user"></i> {{ user.first_name }}</a>
+            <div class="dropdown">
+                <a class="btn btn-outline-info dropdown-toggle fw-bold" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-lg fa-user"></i> {{ user.first_name }}</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownUserMenu">
+                    <li><a class="dropdown-item" href="{% url 'OddJobs:logout' %}">Logout</a></li>
+                </ul>
             </div>
             {% else %}
-            <div class="d-flex">
-                <a class="btn btn-outline-info fw-bold" href="{% url 'OddJobs:login' %}"><i class="fas fa-lg fa-user"></i> Login</a>
-            </div>
+            <a class="btn btn-outline-info fw-bold" href="{% url 'OddJobs:login' %}"><i class="fas fa-lg fa-user"></i> Login</a>
             {% endif %}
         </div>
       </div>
