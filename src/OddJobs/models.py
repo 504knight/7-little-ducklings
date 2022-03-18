@@ -1,6 +1,5 @@
 from django.contrib.auth.models import AbstractUser
-from django.db import models
-from django.db import connection
+from django.db import models, connection
 from enum import IntEnum, unique
 from datetime import datetime
 import re
@@ -36,6 +35,13 @@ class User(AbstractUser):
         return Job.objects.raw(f"SELECT * FROM jobs WHERE {type_condition} = %s AND completed = %s AND start_time >= %s AND start_time <= %s",
                                [self.id, True, start_date, end_date])
 
+    def get_avg_rating(self):
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT AVG(rating) FROM jobs WHERE worker_id=%s", [self.id])
+            row = cursor.fetchone()
+            return row[0]
+
+
     #initially start_time will be the start time of the time window in which the customer wants the job started
     #when worker accepts a job update job start_time to be the time they have chosen to start the job
 
@@ -64,18 +70,13 @@ class User(AbstractUser):
 
     def update_balance(self, action, amount):
         if re.fullmatch("^\\d+\\.{0,1}\\d{0,2}$", str(amount)) is not None and float(amount) >= 0:
-            print("matched")
             if int(action) == 0: #deposit
-                print("deposit start")
                 self.balance += float(amount)
                 self.save()
-                print("deposit end")
             elif int(action) == 1 and self.balance >= float(amount): #withdraw
-                print("withdraw start")
                 self.balance -= float(amount)
                 self.save()
             else:
-                print("Invalid Balance Action")
                 return False
             return True
         return False

@@ -13,7 +13,11 @@
     <th>Rating</th>
 </tr>
 {% for job in job_history %}
+{% if user.type != 1 %}
 <tr class="clickable-row">
+{% else %}
+<tr>
+{% endif %}
     <td>{{ job.id }}</td>
     {% if user.type == 1 %}
     <td>{{ job.customer.first_name }} {{ job.customer.last_name }}</td>
