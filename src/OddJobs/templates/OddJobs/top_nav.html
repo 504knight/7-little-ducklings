@@ -29,7 +29,7 @@
             <div class="dropdown">
                 <a class="btn btn-outline-info dropdown-toggle fw-bold" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-lg fa-user"></i> {{ user.first_name }}</a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Account</a></li>
+                  <li><a class="dropdown-item" href="{% url 'OddJobs:account_info' %}">Account</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="{% url 'OddJobs:logout' %}">Logout</a></li>
                 </ul>
