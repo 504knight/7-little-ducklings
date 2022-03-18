@@ -21,6 +21,8 @@
     
     {% include 'OddJobs/top_nav_bar.html' %}
 
+    
+
     <div class="content-div">
         <h1>Job History</h1>
         <label for="start-date-input">Start Date:</label>
@@ -31,8 +33,10 @@
 
         <br>
         <br>
+        {% if user.type != 1 %}
         <p>Click on a job to leave/edit a rating.</p>
         <br>
+        {% endif %}
         <br>
 
         <table id="history-table" class="table">

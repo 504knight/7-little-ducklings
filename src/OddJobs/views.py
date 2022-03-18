@@ -153,8 +153,8 @@ def account_info(request):
         return redirect('OddJobs:login')
 
 
-def account_reset(request):
-    return render(request, 'OddJobs/account_reset.html')
+def account_reset(request, err_msg=""):
+    return render(request, 'OddJobs/account_reset.html', {'err_msg': err_msg})
 
 def request_username(request, email_address):
     try:
@@ -187,14 +187,18 @@ def reset_password(request):
         email_address = request.POST['email']
         code = request.POST['code']
         newPassword = request.POST['password']
+        user = User.objects.get(email=email_address)
+    except User.DoesNotExist:
+        return redirect('OddJobs:account_reset', err_msg="We were unable to find a user with that email address.")
     except:
-        raise Http404("An error occurred while ")
+        return redirect('OddJobs:account_reset', err_msg="Please make sure you have entered your email, code, and new password.")
     else:
-        user = get_object_or_404(User, email=email_address)
         if int(code) == AccountInfo.get_six_digit_hash(user.email):
             user.set_password(newPassword)
             user.save()
             return redirect('OddJobs:login')
+        else:
+            return redirect('OddJobs:account_reset', err_msg="Incorrect code entered.")
 
 
 

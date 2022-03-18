@@ -7,7 +7,7 @@ requestUsername = function() {
     let email = getEmail();
     if(email !== null){
         fetch(`${usernameRequestUrl}/${email}`)
-        .then(response => response.text().trim())
+        .then(response => response.text())
         .then(message => {
             let statusDiv = document.querySelector("#username-status-div");
             if(message == 'success'){
@@ -27,7 +27,7 @@ sendResetCode = function(){
     let email = getEmail2();
     if(email !== null){
         fetch(`${resetRequestUrl}/${email}`)
-        .then(response => response.text().trim())
+        .then(response => response.text())
         .then(message => {
             let statusDiv = document.querySelector("#password-status-div");
             if(message == 'success'){
@@ -42,7 +42,7 @@ sendResetCode = function(){
 }
 
 getEmail = function() {
-    let emailInput = document.querySelector("email-input");
+    let emailInput = document.querySelector("#email-input");
     let email = emailInput.value;
     if(validEmailRegEx.test(email)){
         return email;
@@ -52,7 +52,7 @@ getEmail = function() {
 }
 
 getEmail2 = function() {
-    let emailInput = document.querySelector("reset-email-input");
+    let emailInput = document.querySelector("#reset-email-input");
     let email = emailInput.value;
     if(validEmailRegEx.test(email)){
         return email;

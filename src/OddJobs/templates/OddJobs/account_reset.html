@@ -29,12 +29,14 @@
             <h2>Request Your Username</h2>
             <form class="form-inline" >
                 <label for="email-input">Enter your email address:</label>
-                <input type="email" class="form-control me-1" id="email-input" placeholder="Enter email">
+                <input type="email" class="form-control me-1 my-1" id="email-input" placeholder="Enter email">
                 <button type="button" onclick="requestUsername()" class="btn btn-secondary">Request Username</button>
             </form>
         {% endif %}
         
-        <div id="username-status-div">
+        <br>
+        <br>
+        <div id="username-status-div" class="my-3">
 
         </div>
 
@@ -43,56 +45,40 @@
 
         <br>
         <br>
-
+        <h2>Reset Your Password</h2>
         <form id="reset-password-form" action="{% url 'OddJobs:reset_password' %}" method="post">
-            <div class="form-group">
+            {% csrf_token %}
+            <div class="form-group my-3">
                 <label for="reset-email-input">Enter your email address:</label>
-                <input type="email" class="form-control me-1" id="reset-email-input" name="email" placeholder="Enter email">
+                <input type="email" class="form-control me-1 my-1" id="reset-email-input" name="email" placeholder="Enter email">
                 <button type="button" onclick="sendResetCode()" class="btn btn-secondary">Send Reset Code</button>
                 <br>
+                <br>
                 <label for="reset-code-box">Enter the emailed code:</label>
-                <input type="text" class="form-control me-1" id="reset-code-box" name="code" placeholder="Enter 6-digit code">
+                <input type="text" class="form-control me-1 my-1" id="reset-code-box" name="code" placeholder="Enter 6-digit code">
             </div>
-            <div class="form-group">
+            <div class="form-group my-3">
                 <label for="password-box">Enter new password:</label>
-                <input type="password" class="form-control me-1" id="password-box" name="password">
+                <input type="password" class="form-control me-1 my-1" id="password-box" name="password">
             </div>
             <button type="submit" class="btn btn-primary">Change Password</button> 
         </form>
 
-        <div id="password-status-div">
-
-        </div>
-
-        <div class="btn-toolbar" role="toolbar">
-          <button class="btn btn-outline-primary mx-2" type="button" onclick="displayForm('deposit')">Make a Deposit</button>
-          <button class="btn btn-outline-primary mx-2" type="button" onclick="displayForm('withdraw')">Make a Withdrawal</button>
-        </div>
-
-        <br>
-        <br>
-
-        <form hidden id="update-balance-form" action="{% url 'OddJobs:update_balance' %}" method="post">
-            {% csrf_token %}
-            <label id="amount-label" for="amount-box">Amount to Add:</label>
-            <input type="text" id="amount-box" name="amount">
-            <input type="hidden" id="action-input" name="action" value="0">
-            <br>
-            <button id="submit-btn" class="btn btn-secondary" type="submit"></button>
-        </form>
-
-        <br>
-        
         {% if err_msg|length > 0 %}
-          <div class="alert alert-warning">
+        <div class="alert alert-warning my-2">
             <strong>Error:</strong> {{ err_msg }}
-          </div>
+        </div>
         {% endif %}
-    </div>
+
+        <div id="password-status-div" class="my-2">
+            
+        </div>
+
+        
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
-    <script src="{% static 'OddJobs/balancepage.js' %}"></script>
+    <script src="{% static 'OddJobs/accountreset.js' %}"></script>
 </body>
 </html>
