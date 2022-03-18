@@ -201,6 +201,13 @@ def reset_password(request):
             return redirect('OddJobs:account_reset', err_msg="Incorrect code entered.")
 
 
+def archive_user(request):
+    if request.user.is_authenticated:
+        user = request.user
+        user.is_active = False
+        user.save()
+    return redirect('OddJobs:index')
+
 
 def worker_available_jobs(request):
     #if not request.user.is_authenticated:

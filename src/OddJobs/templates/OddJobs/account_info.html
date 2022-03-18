@@ -39,6 +39,21 @@
         <a href="{% url 'OddJobs:account_reset' %}" class="btn btn-primary" role="button">Reset Password</a>
 
 
+        <button id="archive-btn" type="button" class="btn btn-primary" role="button" onclick="showArchiveForm()">Archive My Account</button>
+
+        <br>
+
+        <form hidden id="archive-form" class="form-horizontal my-3" action="{% url 'OddJobs:archive_user' %}">
+            <div class="form-group">
+                <h3>Are you sure you wish to archive your account? This cannot be undone without calling customer service.</h3>
+                <br>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary mx-4 my-2">Yes</button>
+                <button type="button" class="btn btn-secondary mx-4 my-2" onclick="hideArchiveForm()">No</button>
+            </div>
+        </form>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>

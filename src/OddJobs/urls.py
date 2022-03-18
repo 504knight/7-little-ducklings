@@ -27,5 +27,6 @@ urlpatterns = [
     path('account_info', views.account_info, name="account_info"),
     path('account_reset/', views.account_reset, name="account_reset"),
     path('account_reset/<str:err_msg>/', views.account_reset, name="account_reset"),
+    path('archive_user', views.archive_user, name="archive_user"),
 ]
 
