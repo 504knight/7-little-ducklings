@@ -185,7 +185,7 @@ def reset_code(request, email_address):
 def reset_password(request):
     try:
         email_address = request.POST['email']
-        code = request.POST['code']
+        code = int(request.POST['code'])
         newPassword = request.POST['password']
         user = User.objects.get(email=email_address)
     except User.DoesNotExist:
@@ -193,7 +193,7 @@ def reset_password(request):
     except:
         return redirect('OddJobs:account_reset', err_msg="Please make sure you have entered your email, code, and new password.")
     else:
-        if int(code) == AccountInfo.get_six_digit_hash(user.email):
+        if code == AccountInfo.get_six_digit_hash(user.email):
             user.set_password(newPassword)
             user.save()
             return redirect('OddJobs:login')
