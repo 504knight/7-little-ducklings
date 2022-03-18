@@ -9,13 +9,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'OddJobs/css/custom.min.css'%}" type="text/css"/>
 
-    <!-- Fontawesome icons -->
-    <script src="https://kit.fontawesome.com/405b071dc7.js" crossorigin="anonymous"></script>
-
     <title>Odd Jobs</title>
 </head>
 <body>
-
     {% include 'OddJobs/top_nav.html' %}
 
     <div class="container my-5">
@@ -30,8 +26,8 @@
             <div class="col-lg-4 my-3 mt-lg-0">
                 <div class="card">
                     <img src="{% static 'OddJobs/images/cat.jpg' %}" class="card-img-top" alt="...">
+                    <h2 class="h4 card-header">{{ user.first_name }} {{ user.last_name }}</h2>
                     <div class="card-body">
-                        <h2 class="h4 card-title">{{ user.first_name }} {{ user.last_name }}</h2>
                             <p>Username: {{ user.username }}<br>
                             Password: {{ user.password }}<br>
                             Email: {{ user.email }}<br>
@@ -44,7 +40,5 @@
             {% endfor %}
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
 </body>
 </html>
