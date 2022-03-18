@@ -18,5 +18,8 @@ urlpatterns = [
     path('available_jobs', views.worker_available_jobs, name="available_jobs"),
     path('accepted_jobs', views.worker_accepted_jobs, name="accepted_jobs"),
     path('active_jobs', views.customer_active_jobs, name="active_jobs"),
+    path('balance_page/', views.balance_page, name="balance_page"),
+    path('balance_page/<str:err_msg>/', views.balance_page, name="balance_page"),
+    path('update_balance', views.update_balance, name="update_balance"),
 ]
 
