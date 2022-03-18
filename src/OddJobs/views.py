@@ -146,6 +146,16 @@ def update_balance(request):
         return redirect('OddJobs:balance_page')
 
 
+def account_info(request):
+    if request.user.is_authenticated:
+        return render(request, 'OddJobs/account_info.html')
+    else:
+        return redirect('OddJobs:login')
+
+
+def account_reset(request):
+    return render(request, 'OddJobs/account_reset.html')
+
 def request_username(request, email_address):
     try:
         user = User.objects.get(email=email_address)
@@ -157,6 +167,7 @@ def request_username(request, email_address):
         user.email_user(subject='Your OddJobs Username', message=f"Your username is {user.username}",
                   from_email=settings.EMAIL_HOST_USER)
         return HttpResponse("success")
+
 
 def reset_code(request, email_address):
     try:
@@ -170,7 +181,20 @@ def reset_code(request, email_address):
                   from_email=settings.EMAIL_HOST_USER)
         return HttpResponse("success")
 
+
 def reset_password(request):
+    try:
+        email_address = request.POST['email']
+        code = request.POST['code']
+        newPassword = request.POST['password']
+    except:
+        raise Http404("An error occurred while ")
+    else:
+        user = get_object_or_404(User, email=email_address)
+        if int(code) == AccountInfo.get_six_digit_hash(user.email):
+            user.set_password(newPassword)
+            user.save()
+            return redirect('OddJobs:login')
 
 
 
@@ -204,7 +228,7 @@ class JobHistory:
 
 class AccountInfo:
 
-    #not a great way to do this, but didn't want to change the models again
+    #not a great way to do identity verification, but didn't want to change the models again
     @staticmethod
     def get_six_digit_hash(string):
         string = str(date.day) + string
