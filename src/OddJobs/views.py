@@ -177,7 +177,9 @@ def reset_code(request, email_address):
     except:
         return HttpResponse("An error occurred.")
     else:
-        user.email_user(subject='Password Reset Code', message=f"Your reset code is: {AccountInfo.get_six_digit_hash(user.email)}",
+        msg = f"Your reset code is: {AccountInfo.get_six_digit_hash(user.email)}\n" \
+              f"This code is valid until {date.today().strftime('%m/%d/%Y')} at 11:59 pm (MST)."
+        user.email_user(subject='Password Reset Code', message=msg,
                   from_email=settings.EMAIL_HOST_USER)
         return HttpResponse("success")
 
@@ -242,7 +244,7 @@ class AccountInfo:
     #not a great way to do identity verification, but didn't want to change the models again
     @staticmethod
     def get_six_digit_hash(string):
-        string = str(date.day) + string
+        string = str(date.day) + string[0:2] + str(date.month) + string[2:]
         stop = int(len(string) * 0.75)
         bytes = string[0:stop].encode() #default encoding is utf-8
         hash = 0
