@@ -12,20 +12,31 @@
     <title>New User</title>
 </head>
 <body>
-    <h2>Create User</h2>
-    <form action="{% url 'OddJobs:create_user' %}" method="POST">
-        {% csrf_token %}
-        <label for="username">Username:</label><br/>
-        <input type="text" id="username" name="username"><br/>
-        <label for="password">Password:</label><br/>
-        <input type="password" id="password" name="password"><br/>
-        <label for="email">Email:</label><br/>
-        <input type="text" id="email" name="email"><br/>
-        <label for="fname">First Name:</label><br/>
-        <input type="text" id="fname" name="fname"><br/>
-        <label for="lname">Last Name:</label><br/>
-        <input type="text" id="lname" name="lname"><br/>
-        <button type="submit">Submit</button>
-    </form>
+{% include 'OddJobs/top_nav.html' %}
+<div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-6 col-xl-4">
+                <h1 class="card-header h3">Create User</h1>
+                <div class="card-body bg-light">
+                    <div class="card-text">
+                        <form action="{% url 'OddJobs:create_user' %}" method="POST">
+                            {% csrf_token %}
+                            <label for="username">Username:</label><br/>
+                            <input type="text" id="username" name="username"><br/>
+                            <label for="password">Password:</label><br/>
+                            <input type="password" id="password" name="password"><br/>
+                            <label for="email">Email:</label><br/>
+                            <input type="text" id="email" name="email"><br/>
+                            <label for="fname">First Name:</label><br/>
+                            <input type="text" id="fname" name="fname"><br/>
+                            <label for="lname">Last Name:</label><br/>
+                            <input type="text" id="lname" name="lname"><br/>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
