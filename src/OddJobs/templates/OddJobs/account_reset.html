@@ -12,21 +12,57 @@
     <!-- Fontawesome icons -->
     <script src="https://kit.fontawesome.com/405b071dc7.js" crossorigin="anonymous"></script>
 
-    <title>Balance Page</title>
+    <title>Odd Jobs</title>
 </head>
 <body>
     <!-- Top Navigation -->
     {% include 'OddJobs/top_nav_bar.html' %}
     
-
+    
     <div class="ms-2">
-        <h1>Update Balance</h1>
+        <h1>Reset Account Information</h1>
         <br>
         <br>
-        <p>Current Balance: <span id="current-balance">${{ user.balance }}</span></p>
+        {% if user.is_authenticated %}
+            <p>Username: {{ user.username }}</p>
+        {% else %}
+            <h2>Request Your Username</h2>
+            <form class="form-inline" >
+                <label for="email-input">Enter your email address:</label>
+                <input type="email" class="form-control me-1" id="email-input" placeholder="Enter email">
+                <button type="button" onclick="requestUsername()" class="btn btn-secondary">Request Username</button>
+            </form>
+        {% endif %}
+        
+        <div id="username-status-div">
+
+        </div>
+
+        
+        <p></p>
 
         <br>
         <br>
+
+        <form id="reset-password-form" action="{% url 'OddJobs:reset_password' %}" method="post">
+            <div class="form-group">
+                <label for="reset-email-input">Enter your email address:</label>
+                <input type="email" class="form-control me-1" id="reset-email-input" name="email" placeholder="Enter email">
+                <button type="button" onclick="sendResetCode()" class="btn btn-secondary">Send Reset Code</button>
+                <br>
+                <label for="reset-code-box">Enter the emailed code:</label>
+                <input type="text" class="form-control me-1" id="reset-code-box" name="code" placeholder="Enter 6-digit code">
+            </div>
+            <div class="form-group">
+                <label for="password-box">Enter new password:</label>
+                <input type="password" class="form-control me-1" id="password-box" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Change Password</button> 
+        </form>
+
+        <div id="password-status-div">
+
+        </div>
 
         <div class="btn-toolbar" role="toolbar">
           <button class="btn btn-outline-primary mx-2" type="button" onclick="displayForm('deposit')">Make a Deposit</button>

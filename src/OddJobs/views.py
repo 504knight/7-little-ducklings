@@ -4,6 +4,9 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import User, Job
 from django.http import Http404
+from django.core.mail import send_mail
+from django.conf import settings
+from datetime import date
 
 
 # Create your views here.
@@ -143,6 +146,32 @@ def update_balance(request):
         return redirect('OddJobs:balance_page')
 
 
+def request_username(request, email_address):
+    try:
+        user = User.objects.get(email=email_address)
+    except User.DoesNotExist:
+        return HttpResponse("We were unable to find a user with that email address.")
+    except:
+        return HttpResponse("An error occurred.")
+    else:
+        user.email_user(subject='Your OddJobs Username', message=f"Your username is {user.username}",
+                  from_email=settings.EMAIL_HOST_USER)
+        return HttpResponse("success")
+
+def reset_code(request, email_address):
+    try:
+        user = User.objects.get(email=email_address)
+    except User.DoesNotExist:
+        return HttpResponse("We were unable to find a user with that email address.")
+    except:
+        return HttpResponse("An error occurred.")
+    else:
+        user.email_user(subject='Password Reset Code', message=f"Your reset code is: {AccountInfo.get_six_digit_hash(user.email)}",
+                  from_email=settings.EMAIL_HOST_USER)
+        return HttpResponse("success")
+
+def reset_password(request):
+
 
 
 def worker_available_jobs(request):
@@ -173,3 +202,21 @@ class JobHistory:
 
         return list(current_user.get_job_history(start_date, end_date))
 
+class AccountInfo:
+
+    #not a great way to do this, but didn't want to change the models again
+    @staticmethod
+    def get_six_digit_hash(string):
+        string = str(date.day) + string
+        stop = int(len(string) * 0.75)
+        bytes = string[0:stop].encode() #default encoding is utf-8
+        hash = 0
+        for byte in bytes:
+            hash += byte
+            hash += (hash << 10)
+            hash ^= (hash >> 6)
+        hash += (hash << 3)
+        hash ^= (hash >> 11)
+        hash += (hash << 15)
+
+        return hash % 1000000

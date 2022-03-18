@@ -21,5 +21,6 @@ urlpatterns = [
     path('balance_page/', views.balance_page, name="balance_page"),
     path('balance_page/<str:err_msg>/', views.balance_page, name="balance_page"),
     path('update_balance', views.update_balance, name="update_balance"),
+    path('request_username/<str:email_address>/', views.request_username, name="request_username")
 ]
 

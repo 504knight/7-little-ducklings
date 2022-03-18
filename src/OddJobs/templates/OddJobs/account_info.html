@@ -12,29 +12,28 @@
     <!-- Fontawesome icons -->
     <script src="https://kit.fontawesome.com/405b071dc7.js" crossorigin="anonymous"></script>
 
-    <title>Balance Page</title>
+    <title>Account Information</title>
 </head>
 <body>
     <!-- Top Navigation -->
     {% include 'OddJobs/top_nav_bar.html' %}
     
-
+    
     <div class="ms-2">
-        <h1>Update Balance</h1>
+        <h1>Account Information</h1>
         <br>
         <br>
-        <p>Current Balance: <span id="current-balance">${{ user.balance }}</span></p>
+        <p>Username: {{ user.username }}</p>
+        <br>
+        <br>
+        <p>Balance: ${{ user.balance }}</p>
+        <br>
+        <a href="{% url 'OddJobs:balance_page' %}" class="btn btn-primary" role="button">Add/Withdraw Funds</a>
+        
+        <br>
+        <br>
 
-        <br>
-        <br>
-
-        <div class="btn-toolbar" role="toolbar">
-          <button class="btn btn-outline-primary mx-2" type="button" onclick="displayForm('deposit')">Make a Deposit</button>
-          <button class="btn btn-outline-primary mx-2" type="button" onclick="displayForm('withdraw')">Make a Withdrawal</button>
-        </div>
-
-        <br>
-        <br>
+        <a href="{% url 'OddJobs:account_reset' %}" class="btn btn-primary" role="button">Reset Password</a>
 
         <form hidden id="update-balance-form" action="{% url 'OddJobs:update_balance' %}" method="post">
             {% csrf_token %}
@@ -46,12 +45,6 @@
         </form>
 
         <br>
-        
-        {% if err_msg|length > 0 %}
-          <div class="alert alert-warning">
-            <strong>Error:</strong> {{ err_msg }}
-          </div>
-        {% endif %}
     </div>
 
 
