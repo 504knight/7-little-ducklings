@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'OddJobs/css/custom.min.css'%}" type="text/css"/>
+
+    <title>Account Information</title>
+</head>
+<body>
+    <!-- Top Navigation -->
+    {% include 'OddJobs/top_nav.html' %}
+    
+    
+    <div class="ms-2">
+        <h1>Account Information</h1>
+        <br>
+        <br>
+        <p>Username: {{ user.username }}</p>
+        <br>
+        {% if user.type == 1 %}
+        <p>Average Rating: {{ user.get_avg_rating|floatformat:2 }}</p>
+        <br>
+        {% endif %}
+        <p>Balance: ${{ user.balance }}</p>
+        <a href="{% url 'OddJobs:balance_page' %}" class="btn btn-primary" role="button">Add/Withdraw Funds</a>
+        
+        <br>
+        <br>
+        <br>
+
+        <a href="{% url 'OddJobs:account_reset' %}" class="btn btn-primary" role="button">Reset Password</a>
+
+
+        <button id="archive-btn" type="button" class="btn btn-primary" role="button" onclick="showArchiveForm()">Archive My Account</button>
+
+        <br>
+
+        <form hidden id="archive-form" class="form-horizontal my-3" action="{% url 'OddJobs:archive_user' %}">
+            <div class="form-group">
+                <h3>Are you sure you wish to archive your account? This cannot be undone without calling customer service.</h3>
+                <br>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary mx-4 my-2">Yes</button>
+                <button type="button" class="btn btn-secondary mx-4 my-2" onclick="hideArchiveForm()">No</button>
+            </div>
+        </form>
+
+
+    <script src="{% static 'OddJobs/accountreset.js' %}"></script>
+</body>
+</html>

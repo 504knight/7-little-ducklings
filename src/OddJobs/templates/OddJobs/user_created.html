@@ -12,21 +12,18 @@
     <title>New User</title>
 </head>
 <body>
-    {% include 'OddJobs/top_nav.html' %}
-    <div class="container my-5">
+{% include 'OddJobs/top_nav.html' %}
+<div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-6 col-xl-4">
-                <h1 class="card-header h3">Login</h1>
-                <div class="card-body bg-light">
+                <h1 class="card-header h3">Success</h1>
+                <div class="card-body bg-success">
                     <div class="card-text">
-                        <form method="post">
-                            <div>{% csrf_token %}</div>
-                            <div>{{ form.as_p }}</div>
-                            <div class="text-end"><button class="btn btn-info" type="submit">Log In</button></div>
-                        </form>
+                        <p>Congrats! You're account has been created.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+</html>

@@ -1,0 +1,16 @@
+.checked {
+    color: orange;
+  }
+  
+  .clickable:hover {
+      cursor: pointer;
+  }
+
+  .content-div {
+      margin-left: 15px;
+  }
+
+  .clickable-row:hover {
+    background-color: #e8e8e8;
+    cursor: pointer;
+  }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'OddJobs/css/custom.min.css'%}" type="text/css"/>
+
+    <title>Odd Jobs</title>
+</head>
+<body>
+    <!-- Top Navigation -->
+    {% include 'OddJobs/top_nav.html' %}
+    
+    
+    <div class="ms-2">
+        <h1>Reset Account Information</h1>
+        <br>
+        <br>
+        {% if user.is_authenticated %}
+            <p>Username: {{ user.username }}</p>
+        {% else %}
+            <h2>Request Your Username</h2>
+            <form class="form-inline" >
+                <label for="email-input">Enter your email address:</label>
+                <input type="email" class="form-control me-1 my-1" id="email-input" placeholder="Enter email">
+                <button type="button" onclick="requestUsername()" class="btn btn-secondary">Request Username</button>
+            </form>
+        {% endif %}
+        
+        <br>
+        <br>
+        <div id="username-status-div" class="my-3">
+
+        </div>
+
+        
+        <p></p>
+
+        <br>
+        <br>
+        <h2>Reset Your Password</h2>
+        <form id="reset-password-form" action="{% url 'OddJobs:reset_password' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group my-3">
+                <label for="reset-email-input">Enter your email address:</label>
+                <input type="email" class="form-control me-1 my-1" id="reset-email-input" name="email" placeholder="Enter email">
+                <button type="button" onclick="sendResetCode()" class="btn btn-secondary">Send Reset Code</button>
+                <br>
+                <br>
+                <label for="reset-code-box">Enter the emailed code:</label>
+                <input type="text" class="form-control me-1 my-1" id="reset-code-box" name="code" placeholder="Enter 6-digit code">
+            </div>
+            <div class="form-group my-3">
+                <label for="password-box">Enter new password:</label>
+                <input type="password" class="form-control me-1 my-1" id="password-box" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Change Password</button> 
+        </form>
+
+        {% if err_msg|length > 0 %}
+        <div class="alert alert-warning my-2">
+            <strong>Error:</strong> {{ err_msg }}
+        </div>
+        {% endif %}
+
+        <div id="password-status-div" class="my-2">
+            
+        </div>
+
+        
+
+    <script src="{% static 'OddJobs/accountreset.js' %}"></script>
+</body>
+</html>
