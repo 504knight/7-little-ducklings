@@ -1,0 +1,52 @@
+<!-- Fontawesome icons -->
+    <script src="https://kit.fontawesome.com/405b071dc7.js" crossorigin="anonymous"></script>
+
+<!-- Top Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand text-primary fw-bold" href="{% url 'OddJobs:index' %}"><span class="iconify-inline" data-icon="emojione-monotone:top-hat"></span> Odd Jobs</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'OddJobs:job_history' %}">Job History</a>
+            </li>
+<!--            <li class="nav-item dropdown">-->
+<!--              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                Dropdown-->
+<!--              </a>-->
+<!--              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--                <li><a class="dropdown-item" href="#">Action</a></li>-->
+<!--                <li><a class="dropdown-item" href="#">Another action</a></li>-->
+<!--                <li><hr class="dropdown-divider"></li>-->
+<!--                <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+<!--              </ul>-->
+<!--            </li>-->
+          </ul>
+            {% if user.is_authenticated %}
+            <div class="dropdown">
+                <a class="btn btn-outline-info dropdown-toggle fw-bold" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-lg fa-user"></i> {{ user.first_name }}</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" href="{% url 'OddJobs:account_info' %}">Account</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{% url 'OddJobs:logout' %}">Logout</a></li>
+                </ul>
+            </div>
+            {% else %}
+            <div class="dropdown">
+              <a class="btn btn-outline-info dropdown-toggle fw-bold" href="#" role="button" id="dropdownNotAuthLink" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-lg fa-user"></i> Login</a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownNotAuthLink">
+                <li><a class="dropdown-item" href="{% url 'OddJobs:login' %}">Login</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'OddJobs:new_user' %}">Create an Account</a></li>
+              </ul>
+            </div>
+            {% endif %}
+        </div>
+      </div>
+    </nav>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>

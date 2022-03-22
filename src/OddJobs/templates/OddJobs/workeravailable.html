@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'OddJobs/css/custom.min.css'%}" type="text/css"/>
+
+    <title>Odd Jobs</title>
+</head>
+<body>
+    <!-- Top Navigation -->
+    {% include 'OddJobs/top_nav.html' %}
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-3">
+                <select class="form-select" id="distance" required>
+                    <option value="">10 mi</option>
+                    <option>1 mi</option>
+                    <option>2 mi</option>
+                    <option>5 mi</option>
+                    <option>20 mi</option>
+                    <option>40 mi</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a valid country.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="jobtype" required>
+                    <option value="">All</option>
+                    <option>Mowing</option>
+                    <option>Snow Shoveling</option>
+                    <option>Window Washing</option>
+                    <option>Other</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a valid country.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="pay" required>
+                    <option value="">$5+</option>
+                    <option>$10+</option>
+                    <option>$15+</option>
+                    <option>$20+</option>
+                    <option>$50+</option>
+                    <option>$80+</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a valid country.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 mt-3 mt-lg-0">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="h4 card-title">Cool Cat 1</h2>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div class="text-end"><a href="#" class="btn btn-primary">Go somewhere</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mt-3 mt-lg-0">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="h4 card-title">Cool Cat 2</h2>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div class="text-end"><a href="#" class="btn btn-primary">Go somewhere</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mt-3 mt-lg-0">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="h4 card-title">Cool Cat 3</h2>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div class="text-end"><a href="#" class="btn btn-primary">Go somewhere</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

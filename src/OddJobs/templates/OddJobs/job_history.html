@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'OddJobs/css/custom.min.css'%}" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'OddJobs/css/job_history_style.css' %}" type="text/css">
+
+    <title>Job History</title>
+</head>
+<body>
+    
+    {% include 'OddJobs/top_nav.html' %}
+
+    
+
+    <div class="content-div">
+        <h1>Job History</h1>
+        <label for="start-date-input">Start Date:</label>
+        <input type="date" id="start-date-input" class="date-input" name="start-date-input">
+        <label for="end-date-input">End Date:</label>
+        <input type="date"  id="end-date-input" class="date-input" name="end-date-input">
+        <button type="button" id="submit-btn" class="btn btn-outline-primary" onclick="reloadJobListings()">Get Job History</button>
+
+        <br>
+        <br>
+        {% if user.type != 1 %}
+        <p>Click on a job to leave/edit a rating.</p>
+        <br>
+        {% endif %}
+        <br>
+
+        <table id="history-table" class="table">
+            
+        </table>
+
+    </div>
+
+    <script src="{% static 'OddJobs/jobhistory.js' %}"></script>
+</body>
+</html>

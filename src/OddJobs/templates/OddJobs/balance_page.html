@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'OddJobs/css/custom.min.css'%}" type="text/css"/>
+
+    <title>Balance Page</title>
+</head>
+<body>
+    <!-- Top Navigation -->
+    {% include 'OddJobs/top_nav.html' %}
+    
+
+    <div class="ms-2">
+        <h1>Update Balance</h1>
+        <br>
+        <br>
+        <p>Current Balance: <span id="current-balance">${{ user.balance }}</span></p>
+
+        <br>
+        <br>
+
+        <div class="btn-toolbar" role="toolbar">
+          <button class="btn btn-outline-primary mx-2" type="button" onclick="displayForm('deposit')">Make a Deposit</button>
+          <button class="btn btn-outline-primary mx-2" type="button" onclick="displayForm('withdraw')">Make a Withdrawal</button>
+        </div>
+
+        <br>
+        <br>
+
+        <form hidden id="update-balance-form" action="{% url 'OddJobs:update_balance' %}" method="post">
+            {% csrf_token %}
+            <label id="amount-label" for="amount-box">Amount to Add:</label>
+            <input type="text" id="amount-box" name="amount">
+            <input type="hidden" id="action-input" name="action" value="0">
+            <br>
+            <button id="submit-btn" class="btn btn-secondary" type="submit"></button>
+        </form>
+
+        <br>
+        
+        {% if err_msg|length > 0 %}
+          <div class="alert alert-warning">
+            <strong>Error:</strong> {{ err_msg }}
+          </div>
+        {% endif %}
+    </div>
+
+
+    <script src="{% static 'OddJobs/balancepage.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<tr>
+    <th>Id</th>
+    {% if user.type == 1 %}
+        <th>Customer Name</th>
+    {% else %}
+        <th>Worker Name</th>
+    {% endif %}
+    <th>Job Title</th>
+    <th>Description</th>
+    <th>Location</th>
+    <th>Price</th>
+    <th>Date</th>
+    <th>Rating</th>
+</tr>
+{% for job in job_history %}
+{% if user.type != 1 %}
+<tr class="clickable-row">
+{% else %}
+<tr>
+{% endif %}
+    <td>{{ job.id }}</td>
+    {% if user.type == 1 %}
+    <td>{{ job.customer.first_name }} {{ job.customer.last_name }}</td>
+    {% else %}
+    <td>{{ job.worker.first_name }} {{ job.worker.last_name }}</td>
+    {% endif %}
+
+    <td>{{ job.job_title }}</td>
+    <td>{{ job.job_description|truncatewords:5 }}</td>
+    <td>{{ job.location }}</td>
+    <td>${{ job.price }}</td>
+    <td>{{ job.start_time }}</td>
+    <td>
+        {% for i in range %}
+            {% if i <= job.rating %}
+                <span class="fa fa-star checked"></span>
+            {% else %}
+                <span class="fa fa-star"></span>
+            {% endif %}
+        {% endfor %}
+    </td>
+</tr>
+{% endfor %}
