@@ -17,31 +17,41 @@
 <body>
     
     {% include 'OddJobs/top_nav.html' %}
+    <div class="container my-5">
+        <div class="row mb-3">
+            <div class="col-12">
+                <h1>Job History</h1>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="card">
+                    <h2 class="card-header h3">{{ user.first_name }}  {{ user.last_name }}</h2>
+                    <div class="card-body bg-light">
+                        <div class="card-text content-div">
+                            <div class="mb-2">
+                                <label for="start-date-input">Start Date:</label>
+                                <input type="date" id="start-date-input" class="date-input" name="start-date-input">
+                            </div>
+                            <div class="mb-2">
+                                <label for="end-date-input">End Date:</label>
+                                <input type="date"  id="end-date-input" class="date-input" name="end-date-input">
+                            </div>
+                            <button type="button" id="submit-btn" class="btn btn-outline-primary" onclick="reloadJobListings()">Get Job History</button>
+                            {% if user.type != 1 %}
+                            <p class="lead mt-3">Click on a job to leave/edit a rating.</p>
+                            {% endif %}
+                            <div class="my-3 table-responsive">
+                                <table id="history-table" class="table table-secondary table-striped">
 
-    
-
-    <div class="content-div">
-        <h1>Job History</h1>
-        <label for="start-date-input">Start Date:</label>
-        <input type="date" id="start-date-input" class="date-input" name="start-date-input">
-        <label for="end-date-input">End Date:</label>
-        <input type="date"  id="end-date-input" class="date-input" name="end-date-input">
-        <button type="button" id="submit-btn" class="btn btn-outline-primary" onclick="reloadJobListings()">Get Job History</button>
-
-        <br>
-        <br>
-        {% if user.type != 1 %}
-        <p>Click on a job to leave/edit a rating.</p>
-        <br>
-        {% endif %}
-        <br>
-
-        <table id="history-table" class="table">
-            
-        </table>
-
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
     <script src="{% static 'OddJobs/jobhistory.js' %}"></script>
 </body>
 </html>
