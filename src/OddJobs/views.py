@@ -72,7 +72,7 @@ def delete_user(request):
 
 @login_required()
 def admin(request):
-    if request.user.userType != "admin":
+    if request.user.type != 3:
         return redirect('OddJobs:index')
     else:
         users = User.objects.all()
@@ -82,7 +82,6 @@ def admin(request):
             'jobs': jobs
         }
         return render(request, 'OddJobs/admin.html', context)
-    return redirect('OddJobbs:index')
 
 #job-history
 def job_history_page(request):
