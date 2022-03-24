@@ -20,9 +20,24 @@
               <a class="nav-link" href="{% url 'OddJobs:new_job' %}">Post a Job</a>
             </li>
             {% endif %}
+            {% if user.type == 0 or user.type == 2 or user.type == 3 %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'OddJobs:active_jobs' %}">Active Jobs</a>
+            </li>
+            {% endif %}
             {% if user.type == 2 or user.type == 3 %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'OddJobs:admin' %}">Admin</a>
+            </li>
+            {% endif %}
+            {% if user.type == 1 %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'OddJobs:available_jobs' %}">Job Board</a>
+            </li>
+            {% endif %}
+            {% if user.type == 1 %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'OddJobs:accepted_jobs' %}">My Jobs</a>
             </li>
             {% endif %}
 <!--            <li class="nav-item dropdown">-->
