@@ -6,7 +6,7 @@ from .models import User, Job
 from django.http import Http404
 from django.conf import settings
 from datetime import date
-
+import json
 
 # Create your views here.
 
@@ -229,7 +229,8 @@ def worker_accepted_jobs(request):
 def customer_active_jobs(request):
     #if not request.user.is_authenticated:
         #return redirect('OddJobs:index')
-    return render(request, 'OddJobs/customeractive.html')
+    job_data = json.serializers.serialize("json", request.user.get_jobs())
+    return render(request, 'OddJobs/customeractive.html', {'jobs': json.dumps(job_data)})
 
 
 def new_job(request):
