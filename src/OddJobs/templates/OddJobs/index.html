@@ -16,12 +16,22 @@
 
     <div class="container my-5">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 col-lg-8">
                 <h1>Odd Jobs</h1>
-                <p class="lead">Welcome to the Odd Jobs web app!</p>
+                <div class="card my-3">
+                    <h2 class="card-header h3">Welcome to the Odd Jobs web app!</h2>
+                    <div class="card-body bg-light">
+                        <div class="card-text">
+                            <p>Need a job done? Looking to earn some extra cash?</p>
+                            <p>To get started, <a href="{% url 'OddJobs:new_user' %}">create an account</a>.</p>
+                            <p>If you already have an account, <a href="{% url 'OddJobs:login' %}">log in</a>.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
+            {% comment %}
             {% for user in users %}
             <div class="col-lg-4 my-3 mt-lg-0">
                 <div class="card">
@@ -38,6 +48,7 @@
                 </div>
             </div>
             {% endfor %}
+            {% endcomment %}
         </div>
     </div>
 </body>
