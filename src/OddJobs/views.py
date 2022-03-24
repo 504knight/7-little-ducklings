@@ -39,10 +39,11 @@ def create_user(request):
     email = request.POST['email']
     fname = request.POST['fname']
     lname = request.POST['lname']
+    type = request.POST['type']
     balance = 0
     password = request.POST['password']
 
-    user_to_be_made = User(username=username, password=password, first_name=fname, last_name=lname, email=email)
+    user_to_be_made = User(username=username, password=password, first_name=fname, last_name=lname, email=email, type=type)
 
     user_to_be_made.set_password(password)
 
