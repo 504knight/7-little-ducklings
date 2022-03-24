@@ -16,54 +16,74 @@
     {% include 'OddJobs/top_nav.html' %}
 
     <div class="container my-5">
-            <h1>Admin Page</h1>
-            <div class="row my-4 mx-3">
-            <h2 class="text-secondary">Users</h2>
-                <table>
-                    <tr>
-                        <th>Username</th>
-                        <th>User ID</th>
-                        <th>Balance</th>
-                        <th>Type</th>
-                    </tr>
-                    {% for user in users %}
-                    <tr>
-                        <td>{{ user.username }}</td>
-                        <td>{{ user.id }}</td>
-                        <td>${{ user.balance|floatformat:2 }}</td>
-                        <td>{{ user.type }}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
+        <div class="row mb-3">
+            <div class="col-12">
+                <h1>Admin Page</h1>
             </div>
-        <div class="row my-4 mx-3">
-        <h2 class="text-secondary">Jobs</h2>
-            <table>
-                <tr>
-                    <th>Title</th>
-                    <th>Job ID</th>
-                    <th>Customer</th>
-                    <th>Worker</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-                    <th>Duration</th>
-                </tr>
-                {% for job in jobs %}
-                <tr>
-                    <td>{{ job.job_title }}</td>
-                    <td>{{ job.id }}</td>
-                    <td>{{ job.customer.username }}</td>
-                    <td>{{ job.worker.username }}</td>
-                    <td>{{ job.job_description }}</td>
-                    <td>{{ job.price }}</td>
-                    <td>{{ job.start_time }}</td>
-                    <td>{{ job.end_time }}</td>
-                    <td>{{ job.duration }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+        </div>
+        <div class="row">
+            <div class="col-12">
+            <h2 class="text-secondary">Users</h2>
+                <div class="table-responsive">
+                    <table class="table table-secondary table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Username</th>
+                                <th scope="col">User ID</th>
+                                <th scope="col">Balance</th>
+                                <th scope="col">Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                            <tr>
+                                <th scope="row">{{ user.username }}</th>
+                                <td>{{ user.id }}</td>
+                                <td>${{ user.balance|floatformat:2 }}</td>
+                                <td>{{ user.type }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col-12">
+                <h2 class="text-secondary">Jobs</h2>
+                <div class="table-responsive">
+                    <table class="table table-secondary table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Customer</th>
+                                <th scope="col">Worker</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Start Time</th>
+                                <th scope="col">End Time</th>
+                                <th scope="col">Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for job in jobs %}
+                            <tr>
+                                <th scope="row">{{ job.job_title }}</th>
+                                <td>{{ job.id }}</td>
+                                <td>{{ job.customer.username }}</td>
+                                <td>{{ job.worker.username }}</td>
+                                <td>{{ job.job_description }}</td>
+                                <td>{{ job.price }}</td>
+                                <td>{{ job.start_time }}</td>
+                                <td>{{ job.end_time }}</td>
+                                <td>{{ job.duration }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
