@@ -13,12 +13,12 @@ from datetime import date
 def admin_check(user):
     return user.username == "Matthew"
 
+
 def index(request):
     context = {
         'users': User.objects.all(),
         'request': request,
                }
-
     return render(request, 'OddJobs/index.html', context)
 
 
@@ -30,8 +30,10 @@ def login_test(request):
     }
     return render(request, "OddJobs/index.html", context)
 
+
 def new_user(request):
     return render(request, 'OddJobs/input_new_user.html')
+
 
 def create_user(request):
     username = request.POST['username']
@@ -70,6 +72,7 @@ def delete_user(request):
         request.user.delete()
     return redirect('OddJobs:index')
 
+
 @login_required()
 def admin(request):
     if request.user.type != 3:
@@ -83,7 +86,7 @@ def admin(request):
         }
         return render(request, 'OddJobs/admin.html', context)
 
-#job-history
+
 def job_history_page(request):
     if not request.user.is_authenticated:
         return redirect('OddJobs:index')
@@ -155,6 +158,7 @@ def account_info(request):
 def account_reset(request, err_msg=""):
     return render(request, 'OddJobs/account_reset.html', {'err_msg': err_msg})
 
+
 def request_username(request, email_address):
     try:
         user = User.objects.get(email=email_address)
@@ -215,10 +219,12 @@ def worker_available_jobs(request):
         #return redirect('OddJobs:index')
     return render(request, 'OddJobs/workeravailable.html')
 
+
 def worker_accepted_jobs(request):
     #if not request.user.is_authenticated:
         #return redirect('OddJobs:index')
     return render(request, 'OddJobs/workeraccepted.html')
+
 
 def customer_active_jobs(request):
     #if not request.user.is_authenticated:
@@ -241,8 +247,8 @@ def create_job(request):
     end_date = request.POST['end_date']
     duration = request.POST['duration']
 
-    new_job = Job(customer=request.user, job_title=title, job_description=description, location=location, price=price, start_time=start_date, end_time=end_date, duration=duration, completed=False)
-    new_job.save()
+    job_obj = Job(customer=request.user, job_title=title, job_description=description, location=location, price=price, start_time=start_date, end_time=end_date, duration=duration, completed=False)
+    job_obj.save()
 
     return render(request, 'OddJobs/job_created.html')
 
@@ -259,14 +265,15 @@ class JobHistory:
 
         return list(current_user.get_job_history(start_date, end_date))
 
+
 class AccountInfo:
 
-    #not a great way to do identity verification, but didn't want to change the models again
+    # not a great way to do identity verification, but didn't want to change the models again
     @staticmethod
     def get_six_digit_hash(string):
         string = str(date.day) + string[0:2] + str(date.month) + string[2:]
         stop = int(len(string) * 0.75)
-        bytes = string[0:stop].encode() #default encoding is utf-8
+        bytes = string[0:stop].encode()  # default encoding is utf-8
         hash = 0
         for byte in bytes:
             hash += byte
