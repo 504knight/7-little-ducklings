@@ -14,43 +14,43 @@
 <body>
     <!-- Top Navigation -->
     {% include 'OddJobs/top_nav.html' %}
-    
-
-    <div class="ms-2">
-        <h1>Update Balance</h1>
-        <br>
-        <br>
-        <p>Current Balance: <span id="current-balance">${{ user.balance }}</span></p>
-
-        <br>
-        <br>
-
-        <div class="btn-toolbar" role="toolbar">
-          <button class="btn btn-outline-primary mx-2" type="button" onclick="displayForm('deposit')">Make a Deposit</button>
-          <button class="btn btn-outline-primary mx-2" type="button" onclick="displayForm('withdraw')">Make a Withdrawal</button>
+    <div class="container my-5">
+        <div class="row mb-3">
+            <div class="col-12">
+                <h1>Update Balance</h1>
+            </div>
         </div>
-
-        <br>
-        <br>
-
-        <form hidden id="update-balance-form" action="{% url 'OddJobs:update_balance' %}" method="post">
-            {% csrf_token %}
-            <label id="amount-label" for="amount-box">Amount to Add:</label>
-            <input type="text" id="amount-box" name="amount">
-            <input type="hidden" id="action-input" name="action" value="0">
-            <br>
-            <button id="submit-btn" class="btn btn-secondary" type="submit"></button>
-        </form>
-
-        <br>
-        
-        {% if err_msg|length > 0 %}
-          <div class="alert alert-warning">
-            <strong>Error:</strong> {{ err_msg }}
-          </div>
-        {% endif %}
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="card">
+                    <h2 class="card-header h3">Update Balance</h2>
+                    <div class="card-body bg-light">
+                        <div class="card-text">
+                            <p>Current Balance: <span id="current-balance">${{ user.balance }}</span></p>
+                            <div class="btn-toolbar" role="toolbar">
+                                <button class="btn btn-outline-primary me-3" type="button" onclick="displayForm('deposit')">Make a Deposit</button>
+                                <button class="btn btn-outline-primary" type="button" onclick="displayForm('withdraw')">Make a Withdrawal</button>
+                            </div>
+                            <div class="my-3">
+                                <form hidden id="update-balance-form" action="{% url 'OddJobs:update_balance' %}" method="post">
+                                    {% csrf_token %}
+                                        <label id="amount-label" for="amount-box">Amount to Add:</label>
+                                        <input type="text" id="amount-box" name="amount">
+                                        <input type="hidden" id="action-input" name="action" value="0">
+                                        <div class="mt-3"><button id="submit-btn" class="btn btn-secondary" type="submit"></button></div>
+                                </form>
+                            </div>
+                            {% if err_msg|length > 0 %}
+                                <div class="alert alert-warning">
+                                    <strong>Error:</strong> {{ err_msg }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
 
     <script src="{% static 'OddJobs/balancepage.js' %}"></script>
 </body>
