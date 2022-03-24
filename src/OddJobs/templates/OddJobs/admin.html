@@ -74,10 +74,10 @@
                                 <td>{{ job.customer.username }}</td>
                                 <td>{{ job.worker.username }}</td>
                                 <td>{{ job.job_description }}</td>
-                                <td>{{ job.price }}</td>
+                                <td>${{ job.price | floatformat:2}}</td>
                                 <td>{{ job.start_time }}</td>
                                 <td>{{ job.end_time }}</td>
-                                <td>{{ job.duration }}</td>
+                                <td>{{ job.duration | floatformat:0}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
