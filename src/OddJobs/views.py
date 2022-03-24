@@ -6,6 +6,7 @@ from .models import User, Job
 from django.http import Http404
 from django.conf import settings
 from datetime import date
+from django.core import serializers
 import json
 
 # Create your views here.
@@ -215,21 +216,23 @@ def archive_user(request):
 
 
 def worker_available_jobs(request):
-    #if not request.user.is_authenticated:
-        #return redirect('OddJobs:index')
-    return render(request, 'OddJobs/workeravailable.html')
+    if not request.user.is_authenticated:
+        return redirect('OddJobs:index')
+    job_data = serializers.serialize("json", request.user.get_all_unaccepted_jobs())
+    return render(request, 'OddJobs/workeravailable.html', {'jobs': json.dumps(job_data)})
 
 
 def worker_accepted_jobs(request):
-    #if not request.user.is_authenticated:
-        #return redirect('OddJobs:index')
-    return render(request, 'OddJobs/workeraccepted.html')
+    if not request.user.is_authenticated:
+        return redirect('OddJobs:index')
+    job_data = serializers.serialize("json", request.user.get_jobs())
+    return render(request, 'OddJobs/workeraccepted.html', {'jobs': json.dumps(job_data)})
 
 
 def customer_active_jobs(request):
-    #if not request.user.is_authenticated:
-        #return redirect('OddJobs:index')
-    job_data = json.serializers.serialize("json", request.user.get_jobs())
+    if not request.user.is_authenticated:
+        return redirect('OddJobs:index')
+    job_data = serializers.serialize("json", request.user.get_jobs())
     return render(request, 'OddJobs/customeractive.html', {'jobs': json.dumps(job_data)})
 
 

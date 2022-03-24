@@ -30,6 +30,10 @@ class User(AbstractUser):
         type_condition = 'customer_id' if self.type == UserType.CUSTOMER else 'worker_id'
         return Job.objects.raw(f"SELECT * FROM jobs WHERE {type_condition} = %s", [self.id])
 
+    def get_all_unaccepted_jobs(self):
+        type_condition = 'customer_id' if self.type == UserType.CUSTOMER else 'worker_id'
+        return Job.objects.raw(f"SELECT * FROM jobs WHERE worker IS NULL", [self.id])
+
     def get_job_history(self, start_date, end_date):
         type_condition = 'customer_id' if self.type == UserType.CUSTOMER else 'worker_id'
         return Job.objects.raw(f"SELECT * FROM jobs WHERE {type_condition} = %s AND completed = %s AND start_time >= %s AND start_time <= %s",
