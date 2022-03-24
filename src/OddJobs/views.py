@@ -4,7 +4,6 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import User, Job
 from django.http import Http404
-from django.core.mail import send_mail
 from django.conf import settings
 from datetime import date
 
@@ -224,6 +223,27 @@ def customer_active_jobs(request):
     #if not request.user.is_authenticated:
         #return redirect('OddJobs:index')
     return render(request, 'OddJobs/customeractive.html')
+
+
+def new_job(request):
+    if not request.user.is_authenticated:
+        return redirect('OddJobs:index')
+    return render(request, 'OddJobs/input_new_job.html')
+
+
+def create_job(request):
+    title = request.POST['title']
+    description = request.POST['description']
+    location = request.POST['location']
+    price = request.POST['price']
+    start_date = request.POST['start_date']
+    end_date = request.POST['end_date']
+    duration = request.POST['duration']
+
+    new_job = Job(customer=request.user, job_title=title, job_description=description, location=location, price=price, start_time=start_date, end_time=end_date, duration=duration, completed=False)
+    new_job.save()
+
+    return render(request, 'OddJobs/job_created.html')
 
 
 class JobHistory:

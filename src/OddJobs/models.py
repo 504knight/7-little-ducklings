@@ -91,9 +91,13 @@ class User(AbstractUser):
 
 
 class Job(models.Model):
+
+    def __str__(self):
+        return self.job_title
+
     id = models.AutoField(primary_key=True)
     customer = models.ForeignKey(User, null=False, on_delete=models.CASCADE, related_name='+')
-    worker = models.ForeignKey(User, on_delete=models.CASCADE, related_name='+')
+    worker = models.ForeignKey(User, on_delete=models.CASCADE, related_name='+', null=True)
     job_title = models.CharField(max_length=200, null=False)
     job_description = models.TextField(null=False)
     location = models.TextField(null=False)
