@@ -28,5 +28,7 @@ urlpatterns = [
     path('account_reset/', views.account_reset, name="account_reset"),
     path('account_reset/<str:err_msg>/', views.account_reset, name="account_reset"),
     path('archive_user', views.archive_user, name="archive_user"),
+    path('new_job', views.new_job, name="new_job"),
+    path('create_job', views.create_job, name="create_job"),
 ]
 

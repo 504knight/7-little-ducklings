@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'OddJobs/css/custom.min.css'%}" type="text/css"/>
+
+    <title>New User</title>
+</head>
+<body>
+{% include 'OddJobs/top_nav.html' %}
+<div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-6 col-xl-4">
+                <h1 class="card-header h3">Create Job Posting</h1>
+                <div class="card-body bg-light">
+                    <div class="card-text">
+                        <form action="{% url 'OddJobs:create_job' %}" method="POST">
+                            {% csrf_token %}
+                            <label for="title">Job Title:</label><br/>
+                            <input type="text" id="title" name="title"><br/>
+                            <label for="description">Description:</label><br/>
+                            <input type="text" id="description" name="description"><br/>
+                            <label for="location">Address:</label><br/>
+                            <input type="text" id="location" name="location"><br/>
+                            <label for="price">Price:</label><br/>
+                            <input type="number" step=".01" id="price" name="price"><br/>
+                            <label for="start_date">Start Date:</label><br/>
+                            <input type="datetime-local" id="start_date" name="start_date"><br/>
+                            <label for="end_date">End Date:</label><br/>
+                            <input type="datetime-local" id="end_date" name="end_date"><br/>
+                            <label for="duration">Duration (in minutes):</label><br/>
+                            <input type="number" id="duration" name="duration"><br/>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
