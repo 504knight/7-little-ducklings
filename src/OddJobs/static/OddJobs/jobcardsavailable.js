@@ -52,6 +52,34 @@ var expandCard = function(id) {
     })
 }
 
+var updateFilter = function(){
+    let cardHolder = document.querySelector("#cardHolder");
+    cardHolder.remove();
+    cardHolder = document.createElement("div");
+    cardHolder.setAttribute("id", "cardHolder");
+    cardHolder.setAttribute("class", "row");
+
+    jobCards.forEach(function(job) {
+        if (jobtypeDrop.selectedIndex === 0 || ((job.jobData.jobTitle === "Mowing") && (jobtypeDrop.selectedIndex === 1))) {
+            if (job.jobData.price >= 5 && payDrop.selectedIndex === 0) {
+                cardHolder.append(job.html);
+            }
+            else if (job.jobData.price >= 10 && payDrop.selectedIndex === 1) {
+                cardHolder.append(job.html);
+            }
+        }
+        else if (jobtypeDrop.selectedIndex === 0 || ((job.jobData.jobTitle === "Snow Shoveling") && (jobtypeDrop.selectedIndex === 2))) {
+            cardHolder.append(job.html)
+        }
+        else if (jobtypeDrop.selectedIndex === 0 || ((job.jobData.jobTitle === "Window Washing") && (jobtypeDrop.selectedIndex === 3))) {
+            cardHolder.append(job.html)
+        }
+        else if (jobtypeDrop.selectedIndex === 3) {
+            cardHolder.append(job.html)
+        }
+    });
+}
+
 var generateCard = function(job) {
     let jobCardHTML = document.createElement("div");
     jobCard.setAttribute("id", job.id);
@@ -96,9 +124,17 @@ var generateCard = function(job) {
     return jobCard;
 }
 
-let jobCards = [];
+var distanceDrop = document.getElementById("distance");
+var jobtypeDrop = document.getElementById("jobtype");
+var payDrop = document.getElementById("pay");
+
+distanceDrop.addEventListener("click", updateFilter())
+jobtypeDrop.addEventListener("click", updateFilter())
+payDrop.addEventListener("click", updateFilter())
+
+var jobCards = [];
 jobs.forEach(function(job) {
     jobCard = generateCard(job);
     document.querySelector("#cardHolder").append(jobCard.html);
     jobCards.push(jobCard);
-})
+});
