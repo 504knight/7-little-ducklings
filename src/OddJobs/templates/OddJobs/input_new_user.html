@@ -13,6 +13,7 @@
 </head>
 <body>
 {% include 'OddJobs/top_nav.html' %}
+
 <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-6 col-xl-4">
@@ -31,6 +32,11 @@
                             <input type="text" id="fname" name="fname"><br/>
                             <label for="lname">Last Name:</label><br/>
                             <input type="text" id="lname" name="lname"><br/>
+                            <label for="Customer">Account Type:</label><br/>
+                            <input type="radio" id="Customer" name="type" value="0" checked="checked">
+                            <label for="Customer">Customer</label><br/>
+                            <input type="radio" id="Worker" name="type" value="1">
+                            <label for="Worker">Worker</label><br/>
                             <div class="text-end"><button class="btn btn-info" type="submit">Submit</button></div>
                         </form>
                     </div>
