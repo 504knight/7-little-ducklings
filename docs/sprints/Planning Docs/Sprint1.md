@@ -1,5 +1,5 @@
-<div align="center">
+<div align="left">
     <br>
-    <img src="images/sprint1.svg" width="800" height="800">
+    <img src="images/sprint1.svg" width="100%">
     <br>
 </div>
