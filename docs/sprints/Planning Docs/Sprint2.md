@@ -2,7 +2,7 @@
     <br>
     <img src="images/sprint2header.svg" height="100" width="1000">
     <br>
-    <h2>Stories, Assignments, and Time Estimates (Story Points)</h2>
+    <h2>Stories, Assignees, and Time Estimates (Story Points)</h2>
     <img src="images/milestone2-estimates.png" width="80%">
     <br>
     <br>
