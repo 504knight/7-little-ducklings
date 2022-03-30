@@ -19,11 +19,11 @@
                 }
 
                 .small-spacer {
-                    height: 10px;
+                    margin: 10px;
                 }
 
                 .section-spacer {
-                    height: 25px;
+                    margin: 25px;
                 }
 
             </style>
