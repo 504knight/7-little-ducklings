@@ -20,7 +20,7 @@
             </style>
             <div class="content">
                 <h1>Sprint 1 Planning Document</h1>
-                <hr class="hline">
+                <!--<hr class="hline">
                 <br>
                 <h2>Stories and Estimated Story Points</h2>
                 <br>
@@ -32,6 +32,8 @@
                 <h2>Sprint Backlog</h2>
                 <br>
                 <img src="milestone1.png">
+
+                <hr class="fline">-->
 
             </div>
         </div>
