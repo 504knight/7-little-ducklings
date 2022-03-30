@@ -20,7 +20,7 @@
             </style>
             <div class="content">
                 <h1>Sprint 1 Planning Document</h1>
-                <hr class="hline">
+                <div class="hline"></div>
                 <!--<br>
                 <h2>Stories and Estimated Story Points</h2>
                 <br>
