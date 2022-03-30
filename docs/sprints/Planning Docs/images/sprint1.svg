@@ -31,7 +31,7 @@
                 <h1>Sprint 1 Planning Document</h1>
                 <div class="hline"></div>
 
-                <div class="small-spacer"></div>
+                <div class="small-spacer"><p></p></div>
 
                 <h2>Stories and Estimated Story Points</h2>
                 <!--<img src="milestone1-estimates.png">
