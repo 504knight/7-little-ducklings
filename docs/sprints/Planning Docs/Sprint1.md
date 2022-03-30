@@ -9,4 +9,5 @@
     <h2>Sprint Backlog</h2>
     <img src="images/milestone1.png" width="80%">
     <br>
+    <img src="images/sprintfooter.svg" height="10" width="1000">
 </div> 
