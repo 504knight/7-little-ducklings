@@ -5,6 +5,4 @@
     <br>
     <br>
 
-    <div style="background-color:#000000; height:3px;">
-    </div>
 </div> 
