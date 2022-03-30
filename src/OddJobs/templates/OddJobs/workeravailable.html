@@ -15,24 +15,22 @@
     <!-- Top Navigation -->
     {% include 'OddJobs/top_nav.html' %}
 
-    <div class="container my-5">
+    <div class="container my-5" id="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3" hidden>
                 <select class="form-select" id="distance" required>
-                    <option value="">10 min</option>
-                    <option>5 min</option>
+                    <option value="">5 min</option>
                     <option>10 min</option>
                     <option>15 min</option>
                     <option>30 min</option>
-                    <option>60+ min</option>
+                    <option>>30 min</option>
                 </select>
             </div>
             <div class="col-md-3">
-                <select class="form-select" id="jobtype" required>
+                <select class="form-select" id="type" required>
                     <option value="">All</option>
                     <option>Mowing</option>
-                    <option>Snow Shoveling</option>
-                    <option>Window Washing</option>
+                    <option>Shoveling</option>
                     <option>Other</option>
                 </select>
             </div>
@@ -51,9 +49,17 @@
         </div>
     </div>
     <script>
+        var CSRF = '{{ csrf_token }}';
+    </script>
+    <script>
         var jobData = {{ jobs|safe }}
-      </script>
-      <script src="{% static 'OddJobs/jobcardsavailable.js' %}"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    </script>
+    <script>
+        function initMap() {
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANneDUKsAxcsk3s3SYFWLy-yBfJrRBYxo&callback=initMap"></script>
+    <script src="{% static 'OddJobs/jobcardsavailable.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
