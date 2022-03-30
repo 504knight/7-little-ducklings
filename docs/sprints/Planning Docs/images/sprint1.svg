@@ -17,16 +17,25 @@
                     background-color: #FFA500;
                     border: none;
                 }
+
+                .small-spacer {
+                    height: 10px;
+                }
+
+                .section-spacer {
+                    height: 25px;
+                }
+
             </style>
             <div class="content">
                 <h1>Sprint 1 Planning Document</h1>
                 <div class="hline"></div>
 
+                <div class="small-spacer"></div>
+
                 <h2>Stories and Estimated Story Points</h2>
                 <!--<img src="milestone1-estimates.png">
 
-                <br>
-                <br>
                 
                 <h2>Sprint Backlog</h2>
                 <br>
