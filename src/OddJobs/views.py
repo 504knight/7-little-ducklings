@@ -6,7 +6,8 @@ from .models import User, Job
 from django.http import Http404
 from django.conf import settings
 from datetime import date
-
+from django.core import serializers
+import json
 
 # Create your views here.
 
@@ -215,21 +216,50 @@ def archive_user(request):
 
 
 def worker_available_jobs(request):
-    #if not request.user.is_authenticated:
-        #return redirect('OddJobs:index')
-    return render(request, 'OddJobs/workeravailable.html')
+    if not request.user.is_authenticated:
+        return redirect('OddJobs:index')
+    job_data = serializers.serialize("json", request.user.get_all_jobs())
+    return render(request, 'OddJobs/workeravailable.html', {'jobs': json.dumps(job_data)})
 
 
 def worker_accepted_jobs(request):
-    #if not request.user.is_authenticated:
-        #return redirect('OddJobs:index')
-    return render(request, 'OddJobs/workeraccepted.html')
+    if not request.user.is_authenticated:
+        return redirect('OddJobs:index')
+    job_data = serializers.serialize("json", request.user.get_jobs())
+    return render(request, 'OddJobs/workeraccepted.html', {'jobs': json.dumps(job_data), 'user_id': request.user.id})
 
 
 def customer_active_jobs(request):
-    #if not request.user.is_authenticated:
-        #return redirect('OddJobs:index')
-    return render(request, 'OddJobs/customeractive.html')
+    if not request.user.is_authenticated:
+        return redirect('OddJobs:index')
+    job_data = serializers.serialize("json", request.user.get_jobs())
+    return render(request, 'OddJobs/customeractive.html', {'jobs': json.dumps(job_data)})
+
+def accept_job(request, job_id):
+    if not request.user.is_authenticated:
+        return redirect('OddJobs:index')
+    try:
+        selected_date = request.POST['date']
+    except:
+        raise Http404("Error: Need Start Date")
+    else:
+        if (request.user.accept_job(job_id, selected_date)):
+            return redirect('OddJobs:accepted_jobs')
+        else:
+            return redirect('OddJobs:available_jobs')
+
+def complete_job(request, job_id):
+    if not request.user.is_authenticated:
+        return redirect('OddJobs:index')
+    job = Job.objects.get(id=job_id)
+    job.completed = True
+    job.save()
+    price = job.price
+    if (job.customer.update_balance(1, price)):
+        job.worker.update_balance(0, price)
+    else:
+        print("Not enough money in customer balance.")
+    return redirect('OddJobs:accepted_jobs')
 
 
 def new_job(request):

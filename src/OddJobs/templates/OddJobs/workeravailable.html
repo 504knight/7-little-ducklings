@@ -15,32 +15,24 @@
     <!-- Top Navigation -->
     {% include 'OddJobs/top_nav.html' %}
 
-    <div class="container my-5">
+    <div class="container my-5" id="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3" hidden>
                 <select class="form-select" id="distance" required>
-                    <option value="">10 mi</option>
-                    <option>1 mi</option>
-                    <option>2 mi</option>
-                    <option>5 mi</option>
-                    <option>20 mi</option>
-                    <option>40 mi</option>
+                    <option value="">5 min</option>
+                    <option>10 min</option>
+                    <option>15 min</option>
+                    <option>30 min</option>
+                    <option>>30 min</option>
                 </select>
-                <div class="invalid-feedback">
-                    Please select a valid country.
-                </div>
             </div>
             <div class="col-md-3">
-                <select class="form-select" id="jobtype" required>
+                <select class="form-select" id="type" required>
                     <option value="">All</option>
                     <option>Mowing</option>
-                    <option>Snow Shoveling</option>
-                    <option>Window Washing</option>
+                    <option>Shoveling</option>
                     <option>Other</option>
                 </select>
-                <div class="invalid-feedback">
-                    Please select a valid country.
-                </div>
             </div>
             <div class="col-md-3">
                 <select class="form-select" id="pay" required>
@@ -51,40 +43,22 @@
                     <option>$50+</option>
                     <option>$80+</option>
                 </select>
-                <div class="invalid-feedback">
-                    Please select a valid country.
-                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-4 mt-3 mt-lg-0">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="h4 card-title">Cool Cat 1</h2>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="text-end"><a href="#" class="btn btn-primary">Go somewhere</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mt-3 mt-lg-0">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="h4 card-title">Cool Cat 2</h2>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="text-end"><a href="#" class="btn btn-primary">Go somewhere</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mt-3 mt-lg-0">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="h4 card-title">Cool Cat 3</h2>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="text-end"><a href="#" class="btn btn-primary">Go somewhere</a></div>
-                    </div>
-                </div>
-            </div>
+        <div class="row" id="cardHolder">
         </div>
     </div>
+    <script>
+        var CSRF = '{{ csrf_token }}';
+    </script>
+    <script>
+        var jobData = {{ jobs|safe }}
+    </script>
+    <script>
+        function initMap() {
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANneDUKsAxcsk3s3SYFWLy-yBfJrRBYxo&callback=initMap"></script>
+    <script src="{% static 'OddJobs/jobcardsavailable.js' %}"></script>
 </body>
 </html>

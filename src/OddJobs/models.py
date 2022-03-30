@@ -27,8 +27,12 @@ class User(AbstractUser):
         return self.first_name + " " + self.last_name
 
     def get_jobs(self):
-        type_condition = 'customer_id' if self.type == UserType.CUSTOMER else 'worker_id'
+        type_condition = 'customer_id' if self.type == UserType.CUSTOMER or self.type == UserType.ADMIN else 'worker_id'
         return Job.objects.raw(f"SELECT * FROM jobs WHERE {type_condition} = %s", [self.id])
+
+    def get_all_jobs(self):
+        type_condition = 'customer_id' if self.type == UserType.CUSTOMER else 'worker_id'
+        return Job.objects.raw(f"SELECT * FROM jobs")
 
     def get_job_history(self, start_date, end_date):
         type_condition = 'customer_id' if self.type == UserType.CUSTOMER else 'worker_id'
@@ -49,22 +53,24 @@ class User(AbstractUser):
         type_condition = 'customer_id' if self.type == UserType.CUSTOMER else 'worker_id'
         return Job.objects.raw(f"SELECT * FROM OddJobs_jobs WHERE {type_condition} = %s AND start_time >= DATE('now')", [self.id])
 
-    def accept_job(self, job, chosen_start_time):
+    def accept_job(self, jobID, chosen_start_time):
         """
         accept_job accepts a job for the worker
 
         :param job: type-Job object, the Job the worker wishes to accept
         :param chosen_start_time: type-Datetime object, the time the worker wishes to start the job (Must be within customer's given start window)
         """
+        start_date = datetime.fromisoformat(chosen_start_time)
+        job = Job.objects.get(id=jobID)
         if self.type != UserType.WORKER:
             print("Only workers can accept jobs.")
             return False
-        elif chosen_start_time < job.start_time or chosen_start_time > job.end_time:
+        elif start_date < job.start_time.replace(tzinfo=None) or start_date > job.end_time.replace(tzinfo=None):
             #don't allow a worker to choose a job at a time that is not within the customer's time window
             return False
         else:
             job.worker = self
-            job.start_time = chosen_start_time
+            job.start_time = start_date
             job.save()
             return True
 
