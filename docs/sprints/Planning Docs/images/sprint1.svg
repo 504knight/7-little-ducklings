@@ -19,7 +19,7 @@
                 }
 
                 .small-spacer {
-                    margin: 100px;
+                    height: 10px;
                 }
 
                 .section-spacer {
