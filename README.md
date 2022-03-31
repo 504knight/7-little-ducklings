@@ -38,10 +38,27 @@ To see the server work, open a browser and go to localhost:8000.
 
 ## Unit Testing Instructions
 
-Functions that need testing: Login, Account Creation, Money Transfer, Job Posting, Job Accepting, Make Review,
-Delete Account, Delete Review.
+Functions that need testing: Login, Account Creation, Money Transfer, Job Posting, Job Accepting, Make Review.
 
-Unit tests can be found in the `unittests.py` file. Running the program will automatically run every unit test.
+### Visual tests:
+
+Login + Account Creation test: Create a new user (on the oddjobs/new_user page) and then attempt to log in with the new information. User should be redirected after logging in back to the home page or whichever page the user attempted to log in from.
+
+Job Posting test: Create a new job via the oddjobs/new_job page (only accessible when a user is logged in). The resulting job will appear in the oddjobs/active_jobs page.
+
+Job Accepting test: Navigate to the oddjobs/available_jobs page (only accessible by a worker user) where all available jobs should be listed. Selecting a job will allow the worker to see the job details as well as an "accept job" button. The worker can select a date, then select "accept job". This job will be taken from the job board and added to the worker's accepted jobs board where the job can then be marked as complete.
+
+Make Review test: After a job is marked as complete by a worker, a customer can go to their oddjobs/active_jobs page and view all jobs assigned or marked as complete. The customer will then be able to leave a review on the job after which the job will be removed from the oddjobs/active_jobs page and will contain a review when it is searched in the oddjobs/job_history page.
+
+### Automated Tests:
+
+Login tests:
+- user authentication and creation: Tests that a new user can be created and authenticated
+- test logged in: Tests that by default a user is not logged in, then logs in user and checks the the login worked
+
+Still needed: Money Transfer test.
+
+Automated unit tests can be found in the `tests.py` file. Running `python manage.py test` will run all tests.
 (Likely to change in the future)
 
 ## System Testing Instructions
