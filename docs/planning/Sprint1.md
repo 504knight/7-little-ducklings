@@ -12,11 +12,10 @@
     <p>&lt;Insert Metric Here&gt;</p>
     <br>
     <br>
-    <h2>Stories, Assignees, and Time Estimates (Story Points)</h2>
+    <h2>Stories and Time Estimates (Story Points)</h2>
     <img src="images/milestone1-estimates.png" width="80%">
     <br>
     <table>
-    <caption>Stories</caption>
         <tr>
             <th>Story</th>
             <th>Acceptance Criteria</th>
