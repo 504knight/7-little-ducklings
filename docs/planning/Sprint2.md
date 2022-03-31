@@ -6,6 +6,26 @@
     <img src="images/milestone2-estimates.png" width="80%">
     <br>
     <br>
+    <table>
+        <tr>
+            <th>Story</th>
+            <th>Tasks</th>
+            <th>Acceptance Criteria</th>
+        </tr>
+        <tr>
+            
+        </tr>
+        <tr>
+            
+        </tr>
+        <tr>
+            
+        </tr>
+        <tr>
+            
+        </tr>
+    </table>
+    <br>
     <h2>Sprint Backlog</h2>
     <img src="images/milestone2.png" width="80%">
     <br>
