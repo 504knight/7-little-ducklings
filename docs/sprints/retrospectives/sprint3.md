@@ -21,11 +21,16 @@
 
 
 ### Measuring improvement
-- For the next milestone we will have plans for how to run sprint planning meetings, standup reports, and retrospectives.
+- For the next milestone we will outline how to run sprint planning meetings, standup reports, and retrospectives.
 
 
-### Attendance:
-* Logan Ballard - Scrum Master
-* Matt Scribner
-* Alex Hardy
-* Aaron Slade
+### Measurement Criteria
+- We split tasks so that each individual had the same number, unless we felt that the difficulty of one was more than another and would be the equivalent of two tasks.
+- Have an outline for the different meeting types and how they will be conducted.
+
+
+### Attendance and Team Work Percentages
+* Logan Ballard - 33.33% - Scrum Master
+* Matt Scribner - 33.33%
+* Alex Hardy - 33.33%
+* Aaron Slade - 33.33%
