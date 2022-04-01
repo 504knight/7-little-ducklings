@@ -63,7 +63,8 @@ Automated unit tests can be found in the `tests.py` file. Running `python manage
 
 ## System Testing Instructions
 
-To test the system, go into the app repository and start the server by running `python manage.py runserver`. Log in
-with the test accounts. (Username: CustomerTest, password: ctest), (Username: WorkerTest, password: wtest),
-(Username: OwnerTest, password: otest). This will allow you to test the functions of each account type.
+To test the system visually, go into the app repository and start the server by running `python manage.py runserver`. Log in
+with the test accounts. Customer account -> username: alhardy, password: password. Worker account -> username: mascribner, password: password. Admin/Owner account -> username: loballard, password: password. This will allow you to test the functions of each account type.
+
+To run automated test, run `python manage.py test` from the src folder to run the testing suite.
 
