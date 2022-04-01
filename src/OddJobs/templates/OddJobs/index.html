@@ -12,44 +12,74 @@
     <title>Odd Jobs</title>
 </head>
 <body>
-    {% include 'OddJobs/top_nav.html' %}
+{% include 'OddJobs/top_nav.html' %}
 
-    <div class="container my-5">
-        <div class="row">
-            <div class="col-12 col-lg-8">
-                <h1>Odd Jobs</h1>
-                <div class="card my-3">
-                    <h2 class="card-header h3">Welcome to the Odd Jobs web app!</h2>
-                    <div class="card-body bg-light">
-                        <div class="card-text">
-                            <p>Need a job done? Looking to earn some extra cash?</p>
-                            <p>To get started, <a href="{% url 'OddJobs:new_user' %}">create an account</a>.</p>
-                            <p>If you already have an account, <a href="{% url 'OddJobs:login' %}">log in</a>.</p>
-                        </div>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12 col-lg-8">
+            <h1>Odd Jobs</h1>
+            <div class="card my-3">
+                {% if not user.is_authenticated %}
+                <h2 class="card-header h3">Welcome to the Odd Jobs web app!</h2>
+                <div class="card-body bg-light">
+                    <div class="card-text">
+                        <p>Need a job done? Looking to earn some extra cash?</p>
+                        <p>To get started, <a href="{% url 'OddJobs:new_user' %}">create an account</a>.</p>
+                        <p>If you already have an account, <a href="{% url 'OddJobs:login' %}">log in</a>.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            {% comment %}
-            {% for user in users %}
-            <div class="col-lg-4 my-3 mt-lg-0">
-                <div class="card">
-                    <img src="{% static 'OddJobs/images/cat.jpg' %}" class="card-img-top" alt="...">
-                    <h2 class="h4 card-header">{{ user.first_name }} {{ user.last_name }}</h2>
-                    <div class="card-body">
-                            <p>Username: {{ user.username }}<br>
-                            Password: {{ user.password }}<br>
-                            Email: {{ user.email }}<br>
-                            Last login: {{ user.last_login }}<br>
-                            Date joined: {{ user.date_joined }}</p>
-                        <div class="text-end"><a href="#" class="btn btn-info">Go somewhere</a></div>
+                {% else %}
+                <h2 class="card-header h3">Welcome {{ user.first_name }}!</h2>
+                <div class="card-body bg-light">
+                    <div class="card-text">
+                        {% if user.type == 0 %}
+                        <ul>
+                            <li>To post a new job select "Post a Job" in the top navigation.</li>
+                            <li>To see the status of any active job listings select "Active Jobs" in the top
+                                navigation.
+                            </li>
+                            <li>To see a history of inactive jobs select "Job History" in the top navigation.</li>
+                        </ul>
+                        {% elif user.type == 1 %}
+                        <ul>
+                            <li>To review your active jobs select "My Jobs" in the top navigation.</li>
+                            <li>To view and pick from the job listings select "Job Board" in the top navigation.</li>
+                            <li>To see jobs you've done select "Job History" in the top navigation.</li>
+                        </ul>
+                        {% elif user.type == 2 %}
+                        <p>Hi, {{ user.first_name }}. Feel free to reach out the the admins if you notice any bugs or
+                            need additional help.</p>
+
+                        {% elif user.type == 3 %}
+                        <p>Welcome Lord {{ user.last_name }}. You know this system inside and out. All the tools are at
+                            your disposal. There is even a special "Admin" link in the top navigation, just for you.</p>
+                        {% endif %}
                     </div>
                 </div>
+                {% endif %}
             </div>
-            {% endfor %}
-            {% endcomment %}
         </div>
     </div>
+    <div class="row">
+        {% comment %}
+        {% for user in users %}
+        <div class="col-lg-4 my-3 mt-lg-0">
+            <div class="card">
+                <img src="{% static 'OddJobs/images/cat.jpg' %}" class="card-img-top" alt="...">
+                <h2 class="h4 card-header">{{ user.first_name }} {{ user.last_name }}</h2>
+                <div class="card-body">
+                    <p>Username: {{ user.username }}<br>
+                        Password: {{ user.password }}<br>
+                        Email: {{ user.email }}<br>
+                        Last login: {{ user.last_login }}<br>
+                        Date joined: {{ user.date_joined }}</p>
+                    <div class="text-end"><a href="#" class="btn btn-info">Go somewhere</a></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endcomment %}
+    </div>
+</div>
 </body>
 </html>
