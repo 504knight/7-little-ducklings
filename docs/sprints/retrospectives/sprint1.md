@@ -4,6 +4,7 @@
 ### What went well
 - Ensured even distribution of work and contributions to the project.
 - Accurately identified tasks that needed to be completed.
+- Database completed and Bootstrap compiled successfully.
 - Establishment of base project to build off of as well as understanding of the overall structure.
 
 ### What didn't go well
