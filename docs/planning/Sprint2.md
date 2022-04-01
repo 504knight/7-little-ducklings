@@ -10,7 +10,7 @@
     </p>
     <br>
     <h2>Metric to Evaluate During Sprint Retrospective</h2>
-    <p>&lt;Insert Metric Here&gt;</p>
+    <p>Were all tasks completed by the assigned inviduals.</p>
     <br>
     <br>
     <h2>Stories and Time Estimates (Story Points)</h2>
