@@ -7,10 +7,10 @@ The purpose of this app is to make casual odd jobs simpler by connecting custome
 
 The main folder for this app is this repository.
 
-All examples and reference documents will be stored under the folder "docs"
-The plan will also be stored in "docs".
+All examples and reference documents will be stored under the folder `/docs`
+The plan will also be stored in `docs`.
 
-The Django server and all associated files will be stored under "OddJobs."
+The Django server and all associated files will be stored under `/src`.
 (Name subject to change)
 
 ## Version-Control Procedures
@@ -27,12 +27,11 @@ we might need and uses a programming language we are all fairly familiar with. W
 
 ## Build Instructions
 
-Clone the project using any Unix-based command line using the command `git clone https://github.
-com/504knight/7-little-ducklings.git`
+Clone the project using any Unix-based command line using the command `git clone https://github.com/504knight/7-little-ducklings.git`
 
 If Django is not installed, run `python -m pip install Django`
 
-To start the server, go into the "OddJobs" folder and run `python manage.py runserver`
+To start the server, go into the `/src` folder and run `python manage.py runserver`
 
 To see the server work, open a browser and go to localhost:8000.
 
