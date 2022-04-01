@@ -33,7 +33,7 @@ If Django is not installed, run `python -m pip install Django`
 
 To start the server, go into the `/src` folder and run `python manage.py runserver`
 
-To see the server work, open a browser and go to localhost:8000.
+To see the server work, open a browser and go to `localhost:8000/oddjobs`.
 
 ## Unit Testing Instructions
 
