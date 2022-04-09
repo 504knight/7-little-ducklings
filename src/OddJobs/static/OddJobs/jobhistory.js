@@ -3,6 +3,9 @@ let validDateRegEx = /^\d{4}-\d{2}-\d{2}$/;
 
 let savedRating = 0;
 
+let startDate = null;
+let endDate = null;
+
 var reloadJobListings = function(){
     //add error handling
     let startDate = getStartDate();
@@ -31,6 +34,7 @@ var getStartDate = function(){
     //if invalid alert user
     let dateVal = startDatePicker.value;
     if(validDateRegEx.test(dateVal)){
+        startDate = dateVal;
         return dateVal;
     }
     alert("Invalid Start Date entered.");
@@ -41,6 +45,7 @@ var getEndDate = function(){
     let endDatePicker = document.querySelector("#end-date-input");
     let dateVal = endDatePicker.value;
     if(validDateRegEx.test(dateVal)){
+        endDate = dateVal;
         return dateVal;
     }
     alert("Invalid End Date entered.");
@@ -50,8 +55,8 @@ var getEndDate = function(){
 var openRatingPopup = function(event) {
     let row = event.currentTarget;
     let firstCell = row.cells[0];
-    let ratingPopupUrl = `${window.location.origin}/oddjobs/${firstCell.innerHTML}/rating_popup`;
-    window.open(ratingPopupUrl);
+    let ratingPopupUrl = `${window.location.origin}/oddjobs/${firstCell.innerHTML}/rating_popup?start_date=${startDate}&end_date=${endDate}`;
+    window.location = ratingPopupUrl;
 }
 
 var displayTempStars = function(event) {
@@ -94,4 +99,9 @@ if(document.querySelectorAll('table').length !== 0){ //only run code for the job
     }
     const observer = new MutationObserver(setClickEvents);
     observer.observe(historyTable, observerOptions);
+}
+
+
+if(document.querySelector("#start-date-input").value && document.querySelector("#end-date-input").value){ //if a start date and end date were supplied from the server
+    reloadJobListings();
 }

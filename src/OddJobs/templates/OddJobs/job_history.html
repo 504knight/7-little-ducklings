@@ -31,11 +31,11 @@
                         <div class="card-text content-div">
                             <div class="mb-2">
                                 <label for="start-date-input">Start Date:</label>
-                                <input type="date" id="start-date-input" class="date-input" name="start-date-input">
+                                <input type="date" id="start-date-input" class="date-input" name="start-date-input" {% if start_date %} value="{{ start_date }}" {% endif %} >
                             </div>
                             <div class="mb-2">
                                 <label for="end-date-input">End Date:</label>
-                                <input type="date"  id="end-date-input" class="date-input" name="end-date-input">
+                                <input type="date"  id="end-date-input" class="date-input" name="end-date-input" {% if end_date %} value="{{ end_date }}" {% endif %}>
                             </div>
                             <button type="button" id="submit-btn" class="btn btn-outline-primary" onclick="reloadJobListings()">Get Job History</button>
                             {% if user.type != 1 %}

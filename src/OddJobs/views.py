@@ -88,12 +88,18 @@ def admin(request):
         return render(request, 'OddJobs/admin.html', context)
 
 
+@login_required()
 def job_history_page(request):
     if not request.user.is_authenticated:
         return redirect('OddJobs:index')
-    return render(request, 'OddJobs/job_history.html', {})
+    elif 'start_date' in request.GET and 'end_date' in request.GET: #if given default start and end date
+        context = {'start_date': request.GET['start_date'], 'end_date': request.GET['end_date']}
+    else:
+        context = {}
+    return render(request, 'OddJobs/job_history.html', context)
 
 
+@login_required()
 def job_history_listings(request):
     if not request.user.is_authenticated:
         return redirect('OddJobs:index')
@@ -112,7 +118,12 @@ def rating_popup(request, job_id):
     job = get_object_or_404(Job, pk=job_id)
     if not request.user.is_authenticated or job.customer != request.user:
         return redirect('OddJobs:index')
-    return render(request, 'OddJobs/rating_popup.html', {'job_id': job_id})
+    try:
+        start_date = request.GET['start_date']
+        end_date = request.GET['end_date']
+    except:
+        raise Http404("Error getting rating page.")
+    return render(request, 'OddJobs/rating_popup.html', {'job_id': job_id, 'start_date': start_date, 'end_date': end_date})
 
 
 def submit_rating(request, job_id):
@@ -121,12 +132,17 @@ def submit_rating(request, job_id):
         return redirect('OddJobs:index')
     try:
         selected_rating = int(request.POST['rating'])
+        start_date = request.POST['start_date']
+        end_date = request.POST['end_date']
     except:
         raise Http404("Error Submitting Rating")
     else:
         job.rating = selected_rating
         job.save()
-        return redirect('OddJobs:job_history')
+        response = redirect('OddJobs:job_history')
+        response['Location'] += f"?start_date={start_date}&end_date={end_date}"
+        print(response['Location'])
+        return response
 
 
 def balance_page(request, err_msg=""):
