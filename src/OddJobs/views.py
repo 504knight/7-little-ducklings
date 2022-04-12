@@ -260,7 +260,7 @@ def customer_active_jobs(request):
     job_data = serializers.serialize("json", request.user.get_jobs())
     return render(request, 'OddJobs/customeractive.html', {'jobs': json.dumps(job_data)})
 
-def accept_job(request, job_id):
+def accept_job(request):
     if not request.user.is_authenticated:
         return redirect('OddJobs:index')
     try:
@@ -268,6 +268,7 @@ def accept_job(request, job_id):
     except:
         raise Http404("Error: Need Start Date")
     else:
+        job_id = request.POST['job_id']
         job = Job.objects.get(id=job_id)
         if (job.worker == None):
             if (request.user.accept_job(job_id, selected_date)):

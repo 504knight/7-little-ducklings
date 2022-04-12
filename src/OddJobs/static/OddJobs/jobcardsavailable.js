@@ -80,7 +80,7 @@ let expandCard = function(id) {
             jobWindow.append(jobWin2);
 
             let dateForm = document.createElement("form");
-            dateForm.action = `${id}/accept_job`;
+            dateForm.action = `accept_job`;
             dateForm.method = "POST";
 
             let datePicker = document.createElement("input");
@@ -94,6 +94,11 @@ let expandCard = function(id) {
             csrfToken.type = "hidden";
             csrfToken.name = "csrfmiddlewaretoken";
             csrfToken.value = CSRF;
+
+            let job_id = document.createElement("input");
+            job_id.type = "hidden";
+            job_id.name = "job_id";
+            job_id.value = id;
 
             let acceptButton = document.createElement("button");
             acceptButton.setAttribute("class", "btn btn-success text-body fw-bold mx-3");
@@ -113,6 +118,7 @@ let expandCard = function(id) {
             jobCardInner4.append(jobWindow);
             jobCardInner2.append(dateForm);
             dateForm.append(csrfToken);
+            dateForm.append(job_id);
             dateForm.append(datePicker);
             dateForm.append(acceptButton);
 
