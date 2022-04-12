@@ -87,12 +87,19 @@ var expandCard = function(id) {
 
             let confirmButton = document.createElement("button");
             confirmButton.setAttribute("class", "btn btn-primary");
-            confirmButton.textContent = "Confirm as Complete"
+            confirmButton.textContent = "Confirm as Complete";
             confirmButton.onclick = function() {
                 let ratingPopupUrl = `${window.location.origin}/oddjobs/${id}/rating_popup`;
                 window.location.replace(ratingPopupUrl);
             };
 
+            let cancelButton = document.createElement("button");
+            cancelButton.setAttribute("class", "btn btn-danger");
+            cancelButton.textContent = "Cancel";
+            cancelButton.onclick = function() {
+                let removeJobURL = `${window.location.origin}/oddjobs/${id}/remove_job`;
+                window.location.replace(removeJobURL);
+            };
 
             jobCardHTML.append(jobCardInner1);
             jobCardInner1.append(jobTitle);
@@ -107,6 +114,9 @@ var expandCard = function(id) {
 
             if (card.jobData.fields.completed) {
                 jobCardInner2.append(confirmButton);
+            }
+            else if (!card.jobData.fields.worker) {
+                jobCardInner2.append(cancelButton);
             }
 
             card.html = jobCardHTML;

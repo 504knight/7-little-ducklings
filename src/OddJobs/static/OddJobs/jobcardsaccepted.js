@@ -79,14 +79,20 @@ let expandCard = function(id) {
             jobWindow.append(jobWin2);
 
             let completeButton = document.createElement("button");
-            completeButton.setAttribute("class", "btn btn-secondary");
+            completeButton.setAttribute("class", "btn btn-secondary mx-2");
             completeButton.textContent = "Mark as Complete"
             completeButton.onclick = function() {
                 let completeJobURL = `${window.location.origin}/oddjobs/${id}/complete_job`;
                 window.location.replace(completeJobURL);
             };
 
-
+            let cancelButton = document.createElement("button");
+            cancelButton.setAttribute("class", "btn btn-danger mx-2");
+            cancelButton.textContent = "Cancel";
+            cancelButton.onclick = function() {
+                let cancelJobURL = `${window.location.origin}/oddjobs/${id}/cancel_job`;
+                window.location.replace(cancelJobURL);
+            };
 
             jobCardHTML.append(jobCardInner1);
             jobCardInner1.append(jobTitle);
@@ -99,6 +105,10 @@ let expandCard = function(id) {
             jobCardInner4.append(jobPay);
             jobCardInner4.append(jobWindow);
             jobCardInner2.append(completeButton);
+
+            if (!card.jobData.fields.completed) {
+                jobCardInner2.append(cancelButton);
+            }
 
 
             card.html = jobCardHTML;
