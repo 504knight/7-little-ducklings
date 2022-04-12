@@ -18,6 +18,15 @@
     <div class="container my-5">
         <div class="row" id="cardHolder">
         </div>
+
+        {% if error_message %}
+            <br>
+            <br>
+            <div class="alert alert-warning">
+                <strong>Error:</strong> {{ error_message }}
+            </div>
+        {% endif %}
+        
     </div>
     <script>
         var CSRF = '{{ csrf_token }}';

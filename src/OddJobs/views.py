@@ -268,10 +268,41 @@ def accept_job(request, job_id):
     except:
         raise Http404("Error: Need Start Date")
     else:
-        if (request.user.accept_job(job_id, selected_date)):
-            return redirect('OddJobs:accepted_jobs')
+        job = Job.objects.get(id=job_id)
+        if (job.worker == None):
+            if (request.user.accept_job(job_id, selected_date)):
+                return redirect('OddJobs:accepted_jobs')
+            else:
+                job_data = serializers.serialize("json", request.user.get_all_jobs())
+                return render(request, 'OddJobs/workeravailable.html', {'jobs': json.dumps(job_data), 'error_message': "Select a date in the preferred window!"})
         else:
-            return redirect('OddJobs:available_jobs')
+            job_data = serializers.serialize("json", request.user.get_all_jobs())
+            return render(request, 'OddJobs/workeravailable.html', {'jobs': json.dumps(job_data), 'error_message': "Job already accepted!"})
+            
+        
+
+def remove_job(request, job_id):
+    if not request.user.is_authenticated:
+        return redirect('OddJobs:index')
+    else:
+        job = Job.objects.get(id=job_id)
+        if (job.customer != request.user):
+            return redirect('OddJobs:index')
+        else:
+            job.delete()
+            return redirect('OddJobs:active_jobs')
+
+def cancel_job(request, job_id):
+    if not request.user.is_authenticated:
+        return redirect('OddJobs:index')
+    else:
+        job = Job.objects.get(id=job_id)
+        if (job.worker != request.user):
+            return redirect('OddJobs:index')
+        else:
+            job.worker = None
+            job.save()
+            return redirect('OddJobs:accepted_jobs')
 
 def complete_job(request, job_id):
     if not request.user.is_authenticated:
@@ -282,9 +313,13 @@ def complete_job(request, job_id):
     price = job.price
     if (job.customer.update_balance(1, price)):
         job.worker.update_balance(0, price)
+        return redirect('OddJobs:accepted_jobs')
     else:
-        print("Not enough money in customer balance.")
-    return redirect('OddJobs:accepted_jobs')
+        job.completed = False
+        job.save()
+        job_data = serializers.serialize("json", request.user.get_jobs())
+        return render(request, 'OddJobs/workeraccepted.html', {'jobs': json.dumps(job_data), 'user_id': request.user.id, 'error_message': "Not enough funds in client account!"})
+    
 
 @login_required()
 def new_job(request):
