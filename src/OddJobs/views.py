@@ -389,6 +389,8 @@ class Validation:
             valid_start_date = Validation.is_valid_datetime(start_date) and Validation.is_future_date(start_date)
             date_comparison = Validation.compare_dates(end_date, start_date)
             valid_end_date = Validation.is_valid_datetime(end_date) and (date_comparison == 1 or date_comparison == 0)
+            print(f"Valid Start Date: {valid_start_date}")
+            print(f"Valid End Date: {valid_end_date}")
             if not re.match('^[a-zA-Z\s]+$', title):
                 return "Title must only contain letters and spaces."
             elif not re.match('^[\d\w\.\s]+$', description):
@@ -417,7 +419,7 @@ class Validation:
     @staticmethod
     def is_future_date(value):
         date = Validation.cvt_to_datetime(value)
-        return date >= datetime.now()
+        return date >= datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
 
     @staticmethod
     def compare_dates(date1, date2):
@@ -428,6 +430,7 @@ class Validation:
         elif date2 > date1 :
             return -1
         return 0
+
     @staticmethod
     def cvt_to_datetime(dateStr):
         dateStr = str(dateStr)
