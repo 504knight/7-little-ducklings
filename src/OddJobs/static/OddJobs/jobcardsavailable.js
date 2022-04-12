@@ -75,12 +75,12 @@ let expandCard = function(id) {
             let startDate = new Date(card.jobData.fields.start_time);
             let endDate = new Date(card.jobData.fields.end_time);
             jobWin1.textContent = "Preferred Window:";
-            jobWin2.textContent = startDate.getUTCMonth() + "/" + startDate.getUTCDay() + "/" + startDate.getUTCFullYear() + " to " + endDate.getUTCMonth() + "/" + endDate.getUTCDay() + "/" + endDate.getUTCFullYear();
+            jobWin2.textContent = (startDate.getMonth() + 1) + "/" + startDate.getDate() + "/" + startDate.getFullYear() + " to " + (endDate.getMonth() + 1) + "/" + endDate.getDate() + "/" + endDate.getFullYear();
             jobWindow.append(jobWin1);
             jobWindow.append(jobWin2);
 
             let dateForm = document.createElement("form");
-            dateForm.action = `${id}/accept_job`;
+            dateForm.action = `accept_job`;
             dateForm.method = "POST";
 
             let datePicker = document.createElement("input");
@@ -95,8 +95,13 @@ let expandCard = function(id) {
             csrfToken.name = "csrfmiddlewaretoken";
             csrfToken.value = CSRF;
 
+            let job_id = document.createElement("input");
+            job_id.type = "hidden";
+            job_id.name = "job_id";
+            job_id.value = id;
+
             let acceptButton = document.createElement("button");
-            acceptButton.setAttribute("class", "btn btn-success text-body fw-bold");
+            acceptButton.setAttribute("class", "btn btn-success text-body fw-bold mx-3");
             acceptButton.textContent = "Accept Job";
             acceptButton.type = "submit";
 
@@ -113,6 +118,7 @@ let expandCard = function(id) {
             jobCardInner4.append(jobWindow);
             jobCardInner2.append(dateForm);
             dateForm.append(csrfToken);
+            dateForm.append(job_id);
             dateForm.append(datePicker);
             dateForm.append(acceptButton);
 
