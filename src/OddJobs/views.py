@@ -312,8 +312,11 @@ def complete_job(request, job_id):
     job.completed = True
     job.save()
     price = job.price
+    owner_cut = price * 0.05
     if (job.customer.update_balance(1, price)):
-        job.worker.update_balance(0, price)
+        job.worker.update_balance(0, price - owner_cut)
+        owner = User.objects.get(type=3)
+        owner.update_balance(0, owner_cut)
         return redirect('OddJobs:accepted_jobs')
     else:
         job.completed = False
