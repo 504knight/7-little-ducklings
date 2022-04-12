@@ -437,8 +437,8 @@ class Validation:
                 return "The price you have entered is invalid. It must contain a at least one digit."
             elif not valid_start_date or not valid_end_date:
                 return "One or more of the dates you have entered is invalid or is in the past."
-            elif not re.match('\d+', duration):
-                return "You have entered an invalid duration."
+            elif not re.match('^[1-9][0-9]*$', duration):
+                return "You have entered an invalid duration. Must be a whole number"
             else:
                 return ""
 
