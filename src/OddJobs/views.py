@@ -5,9 +5,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import User, Job
 from django.http import Http404
 from django.conf import settings
-from datetime import date
+from datetime import date, datetime
 from django.core import serializers
 import json
+import re
 
 # Create your views here.
 
@@ -99,7 +100,6 @@ def job_history_page(request):
     return render(request, 'OddJobs/job_history.html', context)
 
 
-@login_required()
 def job_history_listings(request):
     if not request.user.is_authenticated:
         return redirect('OddJobs:index')
@@ -113,7 +113,7 @@ def job_history_listings(request):
         except:
             raise Http404("Error obtaining job history")
 
-
+@login_required()
 def rating_popup(request, job_id):
     job = get_object_or_404(Job, pk=job_id)
     if not request.user.is_authenticated or job.customer != request.user:
@@ -141,10 +141,9 @@ def submit_rating(request, job_id):
         job.save()
         response = redirect('OddJobs:job_history')
         response['Location'] += f"?start_date={start_date}&end_date={end_date}"
-        print(response['Location'])
         return response
 
-
+@login_required()
 def balance_page(request, err_msg=""):
     print("Balance Pager error message: " + str(err_msg))
     if request.user.is_authenticated:
@@ -164,7 +163,7 @@ def update_balance(request):
     else:
         return redirect('OddJobs:balance_page')
 
-
+@login_required()
 def account_info(request):
     if request.user.is_authenticated:
         return render(request, 'OddJobs/account_info.html')
@@ -178,7 +177,10 @@ def account_reset(request, err_msg=""):
 
 def request_username(request, email_address):
     try:
-        user = User.objects.get(email=email_address)
+        if Validation.is_valid_email(email_address):
+            user = User.objects.get(email=email_address)
+        else:
+            return HttpResponse("Please enter a valid email address.")
     except User.DoesNotExist:
         return HttpResponse("We were unable to find a user with that email address.")
     except:
@@ -191,7 +193,10 @@ def request_username(request, email_address):
 
 def reset_code(request, email_address):
     try:
-        user = User.objects.get(email=email_address)
+        if Validation.is_valid_email(email_address):
+            user = User.objects.get(email=email_address)
+        else:
+            return HttpResponse("Please enter a valid email address.")
     except User.DoesNotExist:
         return HttpResponse("We were unable to find a user with that email address.")
     except:
@@ -207,9 +212,13 @@ def reset_code(request, email_address):
 def reset_password(request):
     try:
         email_address = request.POST['email']
-        code = int(request.POST['code'])
-        newPassword = request.POST['password']
-        user = User.objects.get(email=email_address)
+        if Validation.is_valid_email(email_address):
+            code = int(request.POST['code'])
+            newPassword = request.POST['password']
+            user = User.objects.get(email=email_address)
+        else:
+            return redirect('OddJobs:account_reset', err_msg="Please enter a valid email.")
+
     except User.DoesNotExist:
         return redirect('OddJobs:account_reset', err_msg="We were unable to find a user with that email address.")
     except:
@@ -277,26 +286,44 @@ def complete_job(request, job_id):
         print("Not enough money in customer balance.")
     return redirect('OddJobs:accepted_jobs')
 
-
+@login_required()
 def new_job(request):
     if not request.user.is_authenticated:
         return redirect('OddJobs:index')
+    elif 'error_message' in request.GET:
+        print(request.GET['error_message'])
+        return render(request, 'OddJobs/input_new_job.html', {'error_message': request.GET['error_message']})
+    elif 'success' in request.GET:
+        return render(request, 'OddJobs/job_created.html')
     return render(request, 'OddJobs/input_new_job.html')
 
 
 def create_job(request):
-    title = request.POST['title']
-    description = request.POST['description']
-    location = request.POST['location']
-    price = request.POST['price']
-    start_date = request.POST['start_date']
-    end_date = request.POST['end_date']
-    duration = request.POST['duration']
-
-    job_obj = Job(customer=request.user, job_title=title, job_description=description, location=location, price=price, start_time=start_date, end_time=end_date, duration=duration, completed=False)
-    job_obj.save()
-
-    return render(request, 'OddJobs/job_created.html')
+    try:
+        error_message = Validation.validate_job_info(request)
+        if error_message == "":
+            title = request.POST['title']
+            description = request.POST['description']
+            location = request.POST['location']
+            price = request.POST['price']
+            start_date = request.POST['start_date']
+            end_date = request.POST['end_date']
+            duration = request.POST['duration']
+            job_obj = Job(customer=request.user, job_title=title, job_description=description, location=location, price=price, start_time=start_date, end_time=end_date, duration=duration, completed=False)
+            job_obj.save()
+        else:
+            response = redirect('OddJobs:new_job')
+            response['Location'] += f"?error_message={error_message}"
+            return response
+    except Exception as e:
+        print(f"Exception: {e}")
+        response = redirect('OddJobs:new_job')
+        response['Location'] += "?error_message=You must fill all fields.  If error persists, contact customer service department."
+        return response
+    else:
+        response = redirect('OddJobs:new_job')
+        response['Location'] += "?success=true"
+        return response
 
 
 class JobHistory:
@@ -308,8 +335,10 @@ class JobHistory:
         end_date = request.GET['end_date']
 
         print(f'Current User: {current_user}\nStart Date: {start_date}\nEnd Date: {end_date}')
-
-        return list(current_user.get_job_history(start_date, end_date))
+        if Validation.is_valid_date(start_date) and Validation.is_valid_date(end_date):
+            return list(current_user.get_job_history(start_date, end_date))
+        empty_list = []
+        return empty_list
 
 
 class AccountInfo:
@@ -330,3 +359,94 @@ class AccountInfo:
         hash += (hash << 15)
 
         return hash % 1000000
+
+class Validation:
+
+    date_regex = '^\d{4}-\d{2}-\d{2}$'
+    date_time_regex = '^\d{4}-\d{2}-\d{2}[a-zA-Z:0-9]+$'
+    email_regex = '^\w+@\w+\.\w+$'
+    money_regex = "^\d+\.\d{0,2}$"
+
+    @staticmethod
+    def validate_job_info(request):
+        try:
+            parameters = request.POST
+            title = parameters['title']
+            description = parameters['description']
+            location = parameters['location']
+            price = str(parameters['price'])
+            start_date = parameters['start_date']
+            print(start_date)
+            end_date = parameters['end_date']
+            print(end_date)
+            duration = parameters['duration']
+            print(duration)
+            duration = str(duration)
+        except:
+            print("Caught Exception")
+            return "Unable to process your request."
+        else:
+            valid_start_date = Validation.is_valid_datetime(start_date) and Validation.is_future_date(start_date)
+            date_comparison = Validation.compare_dates(end_date, start_date)
+            valid_end_date = Validation.is_valid_datetime(end_date) and (date_comparison == 1 or date_comparison == 0)
+            if not re.match('^[a-zA-Z\s]+$', title):
+                return "Title must only contain letters and spaces."
+            elif not re.match('^[\d\w\.\s]+$', description):
+                return "The description can only contain letters, numbers, periods, and spaces."
+            elif not re.match('^[\d\w,\.\s]+$', location):
+                return "The location can only contain letters, numbers, periods, commas, and spaces."
+            elif not Validation.is_valid_money(price):
+                return "The price you have entered is invalid. It must contain a at least one digit followed by a period and two more digits."
+            elif not valid_start_date or not valid_end_date:
+                return "One or more of the dates you have entered is invalid or is in the past."
+            elif not re.match('\d+', duration):
+                return "You have entered an invalid duration."
+            else:
+                return ""
+
+    @staticmethod
+    def is_valid_date(value):
+        value = str(value)
+        return re.match(Validation.date_regex, value)
+
+    @staticmethod
+    def is_valid_datetime(value):
+        return re.match(Validation.date_time_regex, value)
+
+    #only for use with datetimes! not with just dates
+    @staticmethod
+    def is_future_date(value):
+        date = Validation.cvt_to_datetime(value)
+        return date >= datetime.now()
+
+    @staticmethod
+    def compare_dates(date1, date2):
+        date1 = Validation.cvt_to_datetime(date1)
+        date2 = Validation.cvt_to_datetime(date2)
+        if date1 > date2 :
+            return 1;
+        elif date2 > date1 :
+            return -1
+        return 0
+    @staticmethod
+    def cvt_to_datetime(dateStr):
+        dateStr = str(dateStr)
+        arr = dateStr.split('-')
+        year = int(arr[0])
+        month = int(arr[1])
+        day = int(arr[2][:2])
+        date = datetime(year, month, day)
+        return date
+
+
+    @staticmethod
+    def is_valid_email(str):
+        return re.match(Validation.email_regex, str)
+
+    @staticmethod
+    def is_valid_money(str):
+        return re.match(Validation.money_regex, str)
+
+
+
+
