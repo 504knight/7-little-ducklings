@@ -401,7 +401,7 @@ class Validation:
     date_regex = '^\d{4}-\d{2}-\d{2}$'
     date_time_regex = '^\d{4}-\d{2}-\d{2}[a-zA-Z:0-9]+$'
     email_regex = '^\w+@\w+\.\w+$'
-    money_regex = "^\d+\.\d{0,2}$"
+    money_regex = "^\d+\.{0,1}\d{0,2}$"
 
     @staticmethod
     def validate_job_info(request):
@@ -434,7 +434,7 @@ class Validation:
             elif not re.match('^[\d\w,\.\s]+$', location):
                 return "The location can only contain letters, numbers, periods, commas, and spaces."
             elif not Validation.is_valid_money(price):
-                return "The price you have entered is invalid. It must contain a at least one digit followed by a period and two more digits."
+                return "The price you have entered is invalid. It must contain a at least one digit."
             elif not valid_start_date or not valid_end_date:
                 return "One or more of the dates you have entered is invalid or is in the past."
             elif not re.match('\d+', duration):
