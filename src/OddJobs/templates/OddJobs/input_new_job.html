@@ -15,26 +15,40 @@
 {% include 'OddJobs/top_nav.html' %}
 <div class="container my-5">
         <div class="row justify-content-center">
-            <div class="col-6 col-xl-4">
+            <div class="col-12 col-md-8">
                 <h1 class="card-header h3">Create Job Posting</h1>
                 <div class="card-body bg-light">
                     <div class="card-text">
                         <form action="{% url 'OddJobs:create_job' %}" method="POST">
                             {% csrf_token %}
-                            <label for="title">Job Title:</label><br/>
-                            <input type="text" id="title" name="title"><br/>
-                            <label for="description">Description:</label><br/>
-                            <input type="text" id="description" name="description"><br/>
-                            <label for="location">Address:</label><br/>
-                            <input type="text" id="location" name="location"><br/>
-                            <label for="price">Price:</label><br/>
-                            <input type="number" step=".01" id="price" name="price"><br/>
-                            <label for="start_date">Start Date:</label><br/>
-                            <input type="datetime-local" id="start_date" name="start_date"><br/>
-                            <label for="end_date">End Date:</label><br/>
-                            <input type="datetime-local" id="end_date" name="end_date"><br/>
-                            <label for="duration">Duration (in minutes):</label><br/>
-                            <input type="number" id="duration" name="duration"><br/>
+                            <div class="mb-2">
+                                <label class="form-label" for="title">Job Title</label>
+                                <input class="form-control" type="text" id="title" name="title">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label" for="description">Description</label>
+                                <input class="form-control" type="text" id="description" name="description">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label" for="location">Address:</label>
+                                <input class="form-control" type="text" id="location" name="location">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label" for="price">Price:</label>
+                                <input class="form-control" type="number" step=".01" id="price" name="price">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label" for="start_date">Start Date:</label>
+                                <input class="form-control" type="datetime-local" id="start_date" name="start_date">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label" for="end_date">End Date:</label>
+                                <input class="form-control" type="datetime-local" id="end_date" name="end_date">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label" for="duration">Duration (in minutes):</label>
+                                <input class="form-control" type="number" id="duration" name="duration">
+                            </div>
                             <div class="text-end"><button class="btn btn-info" type="submit">Submit</button></div>
                         </form>
                     </div>

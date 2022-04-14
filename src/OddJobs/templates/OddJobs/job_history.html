@@ -18,31 +18,29 @@
     
     {% include 'OddJobs/top_nav.html' %}
     <div class="container my-5">
-        <div class="row mb-3">
-            <div class="col-12">
-                <h1>Job History</h1>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12">
+        <div class="row justify-content-center mb-3">
+            <div class="col-12 col-lg-8">
+                <h1 class="mb-3">Job History</h1>
                 <div class="card">
                     <h2 class="card-header h3">{{ user.first_name }}  {{ user.last_name }}</h2>
                     <div class="card-body bg-light">
                         <div class="card-text content-div">
                             <div class="mb-2">
-                                <label for="start-date-input">Start Date:</label>
-                                <input type="date" id="start-date-input" class="date-input" name="start-date-input" {% if start_date %} value="{{ start_date }}" {% endif %} >
+                                <label class="form-label" for="start-date-input">Start Date</label>
+                                <input type="date" id="start-date-input" class="form-control date-input" name="start-date-input" {% if start_date %} value="{{ start_date }}" {% endif %} >
                             </div>
                             <div class="mb-2">
-                                <label for="end-date-input">End Date:</label>
-                                <input type="date"  id="end-date-input" class="date-input" name="end-date-input" {% if end_date %} value="{{ end_date }}" {% endif %}>
+                                <label class="form-label" for="end-date-input">End Date</label>
+                                <input type="date"  id="end-date-input" class="form-control date-input" name="end-date-input" {% if end_date %} value="{{ end_date }}" {% endif %}>
                             </div>
-                            <button type="button" id="submit-btn" class="btn btn-outline-primary" onclick="reloadJobListings()">Get Job History</button>
+                            <div class="text-end">
+                                <button type="button" id="submit-btn" class="btn btn-outline-primary" onclick="reloadJobListings()">Get Job History</button>
+                            </div>
                             {% if user.type != 1 %}
                             <p class="lead mt-3">Click on a job to leave/edit a rating.</p>
                             {% endif %}
-                            <div class="my-3 table-responsive">
-                                <table id="history-table" class="table table-secondary table-striped">
+                            <div class="table-responsive">
+                                <table id="history-table" class="table table-secondary table-striped mt-3">
 
                                 </table>
                             </div>
