@@ -10,6 +10,8 @@ from django.core import serializers
 import json
 import re
 
+from .forms import NewUserForm
+
 # Create your views here.
 
 def admin_check(user):
@@ -34,7 +36,17 @@ def login_test(request):
 
 
 def new_user(request):
-    return render(request, 'OddJobs/input_new_user.html')
+
+    if request.method == 'POST':
+        form = NewUserForm(request.POST)
+
+        if form.is_valid():
+            return redirect('OddJobs:create_user')
+
+    else:
+        form = NewUserForm()
+
+    return render(request, 'OddJobs/input_new_user.html', {'form': form})
 
 
 def create_user(request):
