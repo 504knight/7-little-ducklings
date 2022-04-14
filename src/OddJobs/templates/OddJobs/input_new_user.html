@@ -16,27 +16,41 @@
 
 <div class="container my-5">
         <div class="row justify-content-center">
-            <div class="col-6 col-xl-4">
+            <div class="col-12 col-md-8">
                 <h1 class="card-header h3">Create User</h1>
                 <div class="card-body bg-light">
                     <div class="card-text">
                         <form action="{% url 'OddJobs:create_user' %}" method="POST">
                             {% csrf_token %}
-                            <label for="username">Username:</label><br/>
-                            <input type="text" id="username" name="username"><br/>
-                            <label for="password">Password:</label><br/>
-                            <input type="password" id="password" name="password"><br/>
-                            <label for="email">Email:</label><br/>
-                            <input type="text" id="email" name="email"><br/>
-                            <label for="fname">First Name:</label><br/>
-                            <input type="text" id="fname" name="fname"><br/>
-                            <label for="lname">Last Name:</label><br/>
-                            <input type="text" id="lname" name="lname"><br/>
-                            <label for="Customer">Account Type:</label><br/>
-                            <input type="radio" id="Customer" name="type" value="0" checked="checked">
-                            <label for="Customer">Customer</label><br/>
-                            <input type="radio" id="Worker" name="type" value="1">
-                            <label for="Worker">Worker</label><br/>
+                            <div class="mb-2">
+                                <label class="form-label" for="username">Username</label>
+                                <input class="form-control" placeholder="Username" type="text" id="username" name="username">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label" for="password">Password</label>
+                                <input class="form-control" placeholder="Password" type="password" id="password" name="password">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label" for="email">Email</label>
+                                <input class="form-control" placeholder="example@example.com" type="text" id="email" name="email">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label" for="fname">First Name</label>
+                                <input class="form-control" placeholder="John" type="text" id="fname" name="fname">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label" for="lname">Last Name</label>
+                                <input class="form-control" placeholder="Doe" type="text" id="lname" name="lname">
+                            </div>
+                            <label for="Customer">Account Type</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="Customer" name="type" value="0" checked="checked">
+                                <label class="form-check-label" for="Customer">Customer</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="Worker" name="type" value="1">
+                                <label class="form-check-label" for="Worker">Worker</label><br/>
+                            </div>
                             <div class="text-end"><button class="btn btn-info" type="submit">Submit</button></div>
                         </form>
                     </div>
