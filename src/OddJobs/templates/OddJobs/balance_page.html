@@ -34,9 +34,9 @@
                             <div class="my-3">
                                 <form hidden id="update-balance-form" action="{% url 'OddJobs:update_balance' %}" method="post">
                                     {% csrf_token %}
-                                        <label id="amount-label" for="amount-box">Amount to Add:</label>
-                                        <input type="text" id="amount-box" name="amount">
-                                        <input type="hidden" id="action-input" name="action" value="0">
+                                        <label class="form-label" id="amount-label" for="amount-box">Amount to Add:</label>
+                                        <input class="form-control" type="number" min="0.00" step="0.01" id="amount-box" name="amount">
+                                        <input class="form-control" type="hidden" id="action-input" name="action" value="0">
                                         <div class="mt-3"><button id="submit-btn" class="btn btn-secondary" type="submit"></button></div>
                                 </form>
                             </div>
