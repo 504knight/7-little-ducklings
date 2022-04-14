@@ -15,6 +15,7 @@ urlpatterns = [
     path('job_history_listings', views.job_history_listings, name="job_history_listings"),
     path('<int:job_id>/rating_popup', views.rating_popup, name="rating_popup"),
     path('<int:job_id>/submit_rating', views.submit_rating, name="submit_rating"),
+    path('<int:job_id>/confirm_and_rate', views.confirm_and_rate, name="confirm_and_rate"),
     path('accept_job', views.accept_job, name="accept_job"),
     path('<int:job_id>/complete_job', views.complete_job, name="complete_job"),
     path('<int:job_id>/remove_job', views.remove_job, name="remove_job"),

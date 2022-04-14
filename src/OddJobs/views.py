@@ -9,6 +9,7 @@ from datetime import date, datetime
 from django.core import serializers
 import json
 import re
+from django.urls import reverse
 
 # Create your views here.
 
@@ -109,6 +110,9 @@ def job_history_listings(request):
         try:
             print(str(request.user))
             job_history = JobHistory.get_job_history(request)
+            for job in job_history[:]:
+                if not job.rating:
+                    job_history.remove(job)
             return render(request, 'OddJobs/job_history_listings.html', {'user': request.user, 'job_history': job_history, 'range': range(1, 6)})
         except:
             raise Http404("Error obtaining job history")
@@ -311,18 +315,22 @@ def complete_job(request, job_id):
     job = Job.objects.get(id=job_id)
     job.completed = True
     job.save()
+    return redirect('OddJobs:accepted_jobs')
+
+def confirm_and_rate(request, job_id):
+    if not request.user.is_authenticated:
+        return redirect('OddJobs:index')
+    job = Job.objects.get(id=job_id)
     price = job.price
     owner_cut = price * 0.05
     if (job.customer.update_balance(1, price)):
         job.worker.update_balance(0, price - owner_cut)
         owner = User.objects.get(type=3)
         owner.update_balance(0, owner_cut)
-        return redirect('OddJobs:accepted_jobs')
+        return render(request, 'OddJobs/rating_popup.html', {'job_id': job_id, 'start_date': job.start_time, 'end_date': job.end_time})
     else:
-        job.completed = False
-        job.save()
         job_data = serializers.serialize("json", request.user.get_jobs())
-        return render(request, 'OddJobs/workeraccepted.html', {'jobs': json.dumps(job_data), 'user_id': request.user.id, 'error_message': "Not enough funds in client account!"})
+        return render(request, 'OddJobs/customeractive.html', {'jobs': json.dumps(job_data), 'error_message': "Not enough funds in your account!"})
     
 
 @login_required()

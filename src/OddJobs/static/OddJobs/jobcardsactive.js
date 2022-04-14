@@ -75,12 +75,12 @@ var expandCard = function(id) {
             let startDate = new Date(card.jobData.fields.start_time);
             let endDate = new Date(card.jobData.fields.end_time);
             if (card.jobData.fields.worker) {
-                jobWin1.textContent = "Anticipated Start Date:";
-                jobWin2.textContent = startDate.getUTCMonth() + "/" + startDate.getUTCDay() + "/" + startDate.getUTCFullYear();
+                jobWin1.textContent = "Anticipated Start Time:";
+                jobWin2.textContent = startDate.toLocaleString();
             }
             else {
                 jobWin1.textContent = "Preferred Window:";
-                jobWin2.textContent = startDate.getUTCMonth() + "/" + startDate.getUTCDay() + "/" + startDate.getUTCFullYear() + " to " + endDate.getUTCMonth() + "/" + endDate.getUTCDay() + "/" + endDate.getUTCFullYear();
+                jobWin2.textContent = `${startDate.toLocaleString()} to ${endDate.toLocaleString()}`;
             }
             jobWindow.append(jobWin1);
             jobWindow.append(jobWin2);
@@ -89,7 +89,7 @@ var expandCard = function(id) {
             confirmButton.setAttribute("class", "btn btn-primary");
             confirmButton.textContent = "Confirm as Complete";
             confirmButton.onclick = function() {
-                let ratingPopupUrl = `${window.location.origin}/oddjobs/${id}/rating_popup`;
+                let ratingPopupUrl = `${window.location.origin}/oddjobs/${id}/confirm_and_rate`;
                 window.location.replace(ratingPopupUrl);
             };
 
@@ -198,7 +198,6 @@ var shrinkCard = function(id) {
 
 var generateCard = function(job) {
 
-    console.log("Yes??");
     let jobCardHTML = document.createElement("div");
     jobCardHTML.setAttribute("id", job.pk);
     jobCardHTML.setAttribute("class", "col-lg-4 mt-3 mt-lg-0");
@@ -267,9 +266,7 @@ let jobCards = [];
 let jobs = JSON.parse(jobData);
 console.log(jobs);
 for (var job of jobs) {
-    console.log("Ye");
     if (job.fields.rating == null) {
-        console.log("Yes?");
         let jobCard = generateCard(job);
         document.querySelector("#cardHolder").append(jobCard.html);
         jobCards.push(jobCard);
