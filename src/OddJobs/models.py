@@ -60,15 +60,15 @@ class User(AbstractUser):
         :param job: type-Job object, the Job the worker wishes to accept
         :param chosen_start_time: type-Datetime object, the time the worker wishes to start the job (Must be within customer's given start window)
         """
+        job = Job.objects.get(id=jobID)
         try:
             start_date = datetime.fromisoformat(chosen_start_time)
         except:
             return False
-        job = Job.objects.get(id=jobID)
         if self.type != UserType.WORKER:
             print("Only workers can accept jobs.")
             return False
-        elif start_date < job.start_time.replace(tzinfo=None) or start_date > job.end_time.replace(tzinfo=None):
+        elif start_date <= job.start_time.replace(tzinfo=None) or start_date >= job.end_time.replace(tzinfo=None):
             #don't allow a worker to choose a job at a time that is not within the customer's time window
             return False
         else:

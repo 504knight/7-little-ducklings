@@ -75,7 +75,7 @@ let expandCard = function(id) {
             let startDate = new Date(card.jobData.fields.start_time);
             let endDate = new Date(card.jobData.fields.end_time);
             jobWin1.textContent = "Preferred Window:";
-            jobWin2.textContent = (startDate.getMonth() + 1) + "/" + startDate.getDate() + "/" + startDate.getFullYear() + " to " + (endDate.getMonth() + 1) + "/" + endDate.getDate() + "/" + endDate.getFullYear();
+            jobWin2.textContent = `${startDate.toLocaleString()} to ${endDate.toLocaleString()}`;
             jobWindow.append(jobWin1);
             jobWindow.append(jobWin2);
 
@@ -84,9 +84,9 @@ let expandCard = function(id) {
             dateForm.method = "POST";
 
             let datePicker = document.createElement("input");
-            datePicker.type = "date";
+            datePicker.type = "datetime-local";
             datePicker.id = "date";
-            datePicker.class = "date-input";
+            datePicker.class = "form-control";
             datePicker.name = "date";
             datePicker.value = startDate;
 

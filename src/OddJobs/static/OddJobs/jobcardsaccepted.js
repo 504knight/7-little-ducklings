@@ -23,6 +23,10 @@ let expandCard = function(id) {
             let jobCardInner2 = document.createElement("div");
             jobCardInner2.setAttribute("class", "card-body");
 
+            let progressText = document.createElement("p");
+            progressText.setAttribute("class", "card-text text-warning fw-bold");
+            progressText.textContent = "- Waiting for customer confirmation -";
+
             let jobDescription = document.createElement("p");
             jobDescription.setAttribute("class", "card-text");
             jobDescription.textContent = card.jobData.fields.job_description;
@@ -73,8 +77,8 @@ let expandCard = function(id) {
             let jobWin2 = document.createElement("td");
             jobWin2.setAttribute("class", "text-center");
             let startDate = new Date(card.jobData.fields.start_time);
-            jobWin1.textContent = "Anticipated Start Date:";
-            jobWin2.textContent = startDate.getUTCMonth() + "/" + startDate.getUTCDay() + "/" + startDate.getUTCFullYear();
+            jobWin1.textContent = "Anticipated Start Time:";
+            jobWin2.textContent = startDate.toLocaleString();
             jobWindow.append(jobWin1);
             jobWindow.append(jobWin2);
 
@@ -97,6 +101,11 @@ let expandCard = function(id) {
             jobCardHTML.append(jobCardInner1);
             jobCardInner1.append(jobTitle);
             jobCardInner1.append(jobCardInner2);
+
+            if(card.jobData.fields.completed) {
+                jobCardInner2.append(progressText);
+            }
+
             jobCardInner2.append(jobDescription);
             jobCardInner2.append(jobCardInner3);
             jobCardInner3.append(jobCardInner4);
@@ -104,9 +113,9 @@ let expandCard = function(id) {
             jobCardInner4.append(jobDuration);
             jobCardInner4.append(jobPay);
             jobCardInner4.append(jobWindow);
-            jobCardInner2.append(completeButton);
 
             if (!card.jobData.fields.completed) {
+                jobCardInner2.append(completeButton);
                 jobCardInner2.append(cancelButton);
             }
 
@@ -143,6 +152,10 @@ let shrinkCard = function(id) {
             let jobCardInner2 = document.createElement("div");
             jobCardInner2.setAttribute("class", "card-body");
 
+            let progressText = document.createElement("p");
+            progressText.setAttribute("class", "card-text text-warning fw-bold");
+            progressText.textContent = "- Waiting for customer confirmation -";
+
             let jobDuration = document.createElement("p");
             jobDuration.setAttribute("class", "card-text");
             let duration = card.jobData.fields.duration;
@@ -164,6 +177,11 @@ let shrinkCard = function(id) {
             jobCardHTML.append(jobCardInner1);
             jobCardInner1.append(jobTitle);
             jobCardInner1.append(jobCardInner2);
+
+            if(card.jobData.fields.completed) {
+                jobCardInner2.append(progressText);
+            }
+
             jobCardInner2.append(jobDuration);
             jobCardInner2.append(jobPay);
 
@@ -194,6 +212,10 @@ let generateCard = function(job) {
     let jobCardInner2 = document.createElement("div");
     jobCardInner2.setAttribute("class", "card-body");
 
+    let progressText = document.createElement("p");
+    progressText.setAttribute("class", "card-text text-warning fw-bold");
+    progressText.textContent = "- Waiting for customer confirmation -";
+
     let jobDuration = document.createElement("p");
     jobDuration.setAttribute("class", "card-text");
     let duration = job.fields.duration;
@@ -215,6 +237,11 @@ let generateCard = function(job) {
     jobCardHTML.append(jobCardInner1);
     jobCardInner1.append(jobTitle);
     jobCardInner1.append(jobCardInner2);
+
+    if(job.fields.completed) {
+        jobCardInner2.append(progressText);
+    }
+
     jobCardInner2.append(jobDuration);
     jobCardInner2.append(jobPay);
 
@@ -230,7 +257,8 @@ let jobCards = [];
 let jobs = JSON.parse(jobData);
 for (var job of jobs) {
     console.log(userID);
-    if (!job.fields.completed && job.fields.worker == userID) {
+    if (job.fields.rating == null && job.fields.worker == userID) {
+        console.log("Job should generate")
         let jobCard = generateCard(job);
         document.querySelector("#cardHolder").append(jobCard.html);
         jobCards.push(jobCard);
