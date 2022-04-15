@@ -101,7 +101,7 @@ let expandCard = function(id) {
             job_id.value = id;
 
             let acceptButton = document.createElement("button");
-            acceptButton.setAttribute("class", "btn btn-success text-body fw-bold mx-3");
+            acceptButton.setAttribute("class", "btn btn-success text-body fw-bold mx-3 mt-2");
             acceptButton.textContent = "Accept Job";
             acceptButton.type = "submit";
 

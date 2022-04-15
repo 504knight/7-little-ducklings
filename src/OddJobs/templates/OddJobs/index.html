@@ -15,7 +15,7 @@
 {% include 'OddJobs/top_nav.html' %}
 
 <div class="container my-5">
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-12 col-lg-8">
             <h1>Odd Jobs</h1>
             <div class="card my-3">
@@ -51,8 +51,9 @@
                             need additional help.</p>
 
                         {% elif user.type == 3 %}
-                        <p>Welcome Lord {{ user.last_name }}. You know this system inside and out. All the tools are at
-                            your disposal. There is even a special "Admin" link in the top navigation, just for you.</p>
+                        <p>Welcome admin, {{ user.first_name }} {{ user.last_name }}. All the tools are at
+                            your disposal. There is even a special "Admin" link in the top navigation, just for you. All the users and jobs
+                            listed are posted there. Have fun poking around!</p>
                         {% endif %}
                     </div>
                 </div>
