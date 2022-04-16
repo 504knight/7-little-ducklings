@@ -26,7 +26,7 @@
                     <h2 class="card-header h3">Update Balance</h2>
                     <div class="card-body bg-light">
                         <div class="card-text">
-                            <p>Current Balance: <span id="current-balance">${{ user.balance }}</span></p>
+                            <p>Current Balance: <span id="current-balance">${{ user.balance|floatformat:2 }}</span></p>
                             <div class="btn-toolbar" role="toolbar">
                                 <button class="btn btn-outline-primary me-3" type="button" onclick="displayForm('deposit')">Make a Deposit</button>
                                 <button class="btn btn-outline-primary" type="button" onclick="displayForm('withdraw')">Make a Withdrawal</button>

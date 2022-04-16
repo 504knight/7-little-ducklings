@@ -28,7 +28,7 @@
     <td>{{ job.job_title }}</td>
     <td>{{ job.job_description|truncatewords:5 }}</td>
     <td>{{ job.location }}</td>
-    <td>${{ job.price }}</td>
+    <td>${{ job.price|floatformat:2 }}</td>
     <td>{{ job.start_time }}</td>
     <td>
         {% for i in range %}
